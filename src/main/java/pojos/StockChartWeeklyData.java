@@ -7,7 +7,7 @@ public class StockChartWeeklyData {
 
 	private String	WeeklyorDaily	;
 	private String	StockName	;
-	private String	WeekDate	;
+	private String	TradeDate	;
 	private String	OpenPriceWeekly	;
 	private String	HighPriceWeekly	;
 	private String	LowPriceWeekly	;
@@ -16,6 +16,8 @@ public class StockChartWeeklyData {
 	private String	BBUBWeekly	;
 	private String	BBLBWeekly	;
 	private String	BBMBWeekly	;
+	private String	ema20Weekly	;
+	private String	ema06Weekly	;
 	private String	RSIWeekly	;
 	private String	MACDWeekly	;
 	private String	MacdSignalWeekly	;
@@ -36,11 +38,11 @@ public class StockChartWeeklyData {
 	public void setStockName(String stockName) {
 		StockName = stockName;
 	}
-	public String getWeekDate() {
-		return WeekDate;
+	public String getTradeDate() {
+		return TradeDate;
 	}
-	public void setWeekDate(String weekDate) {
-		WeekDate = weekDate;
+	public void setTradeDate(String TradeDate) {
+		TradeDate = TradeDate;
 	}
 	public String getOpenPriceWeekly() {
 		return OpenPriceWeekly;
@@ -89,6 +91,18 @@ public class StockChartWeeklyData {
 	}
 	public void setBBMBWeekly(String bBMBWeekly) {
 		BBMBWeekly = bBMBWeekly;
+	}
+	public String getEma20Weekly() {
+		return ema20Weekly;
+	}
+	public void setEma20Weekly(String ema20Weekly) {
+		this.ema20Weekly = ema20Weekly;
+	}
+	public String getEma06Weekly() {
+		return ema06Weekly;
+	}
+	public void setEma06Weekly(String ema06Weekly) {
+		this.ema06Weekly = ema06Weekly;
 	}
 	public String getRSIWeekly() {
 		return RSIWeekly;
