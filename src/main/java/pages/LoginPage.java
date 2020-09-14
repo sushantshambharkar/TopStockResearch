@@ -1,5 +1,7 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
+
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -36,22 +38,10 @@ public class LoginPage extends PageObject {
 	
 	submitLogin.click();
 	
-	clickCharts.click();
+	WebDriver driver = getDriver();
 	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	userSelectedChart.click();
-	try {
-		Thread.sleep(2000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	userSelectedChart.selectByIndex(1);
+	
+	driver.manage().window().maximize();
 	
 	}
 

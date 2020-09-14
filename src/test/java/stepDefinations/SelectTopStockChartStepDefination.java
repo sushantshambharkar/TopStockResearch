@@ -9,26 +9,41 @@ import net.thucydides.core.annotations.Steps;
 public class SelectTopStockChartStepDefination {
 	
 	@Steps
-	TopStockResearchChartSteps topStockResearch;
+	TopStockResearchChartSteps topStockResearchChartStep;
 	
 	@Given("^User open top stock$")
 	public void user_open_top_stock() throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
-		topStockResearch.logintotopsearch();
-		topStockResearch.addsharestoList();
-		topStockResearch.getSelectvalues();
+		topStockResearchChartStep.logintotopsearch();
+		topStockResearchChartStep.addsharestoList();
+		//topStockResearch.getSelectvalues();
 	}
 
-	@When("^User selects top stock$")
-	public void user_selects_top_stock() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	   
+	@When("^User open the daily chart$")
+	public void user_open_the_daily_chart() {
+		
+		topStockResearchChartStep.getValuesFromDailyChart();
+		
 	}
 
-	@Then("^User finalizes top stock$")
-	public void user_finalizes_top_stock() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    
+	@Then("^User saves the daily chart values in excel$")
+	public void user_saves_the_daily_chart_values_in_excel() {
+		
+		topStockResearchChartStep.saveValuesFromDailyChart();
+		
 	}
+	
+	@When("^User open the weekly chart$")
+	public void user_open_the_weekly_chart() {
+		
+		topStockResearchChartStep.getValuesFromWeeklyChart();
+		
+	}
+
+	@Then("^User saves the weekly chart values in excel$")
+	public void user_saves_the_weekly_chart_values_in_excel() {
+		topStockResearchChartStep.saveValuesFromWeeklychart();
+	}
+
 
 }

@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
 @DefaultUrl("https://www.topstockresearch.com/")
-public class TopReasearchTechWebPage extends PageObject{
+public class TopStockResearchTechWebPage extends PageObject{
 	
 	@FindBy(xpath="//select[@id=\"eqSubCat\"]")
 	WebElementFacade	selecttechnicalsdropdown;

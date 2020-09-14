@@ -10,7 +10,7 @@ import pages.TopstockresearchChartPage;
 
 public class TopStockResearchChartSteps {
 	
-	private TopstockresearchChartPage topstockresearch;
+	private TopstockresearchChartPage topstockresearchChartPage;
 	private CreateFNOList createFNOList;
 	private LoginPage loginpage;
 	
@@ -32,20 +32,40 @@ public class TopStockResearchChartSteps {
 	}
 	
 
-	public void getSelectvalues() throws InterruptedException
-	{
-			
-		for (int i = 0 ; i < lista.size() ; i++ )
-		{
-		
-		topstockresearch.getUserSelectedDailyValues(lista.get(i).toString());
-		
-		}
-	}
+//	public void getSelectvalues() throws InterruptedException
+//	{
+//			
+//		for (int i = 0 ; i < lista.size() ; i++ )
+//		{
+//		
+//		topstockresearch.getUserSelectedDailyValues(lista.get(i).toString());
+//		
+//		}
+//	}
 
 	
-	public void getvalueslist ()
+	public void getValuesFromDailyChart ()
 	{
+		topstockresearchChartPage.getdailychartvalues();
+		
+	}
+
+
+	public void getValuesFromWeeklyChart() {
+		// TODO Auto-generated method stub
+		topstockresearchChartPage.getweeklychartvalues();
+	}
+
+
+	public void saveValuesFromWeeklychart() {
+		
+		topstockresearchChartPage.saveweeklychartvalues();
+		
+	}
+
+
+	public void saveValuesFromDailyChart() {
+		topstockresearchChartPage.savedailychartvalues();
 		
 	}
 

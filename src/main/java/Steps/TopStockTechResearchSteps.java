@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import net.thucydides.core.annotations.Step;
 import pages.CreateFNOList;
 import pages.LoginPage;
-import pages.TopReasearchTechWebPage;
+import pages.TopStockResearchTechWebPage;
 import pages.TopstockresearchChartPage;
 import pages.TopstockresearchTechPage;
 
@@ -14,7 +14,7 @@ public class TopStockTechResearchSteps {
 
 	private CreateFNOList createFNOList;
 	private TopstockresearchTechPage topstockresearchTechPage;
-	private TopReasearchTechWebPage topReasearchTechWebPage;
+	private TopStockResearchTechWebPage topReasearchTechWebPage;
 	
 	
 	ArrayList<String> listb = new ArrayList<String> ();
