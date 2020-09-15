@@ -7,7 +7,7 @@ public class StockChartWeeklyData {
 
 	private String	WeeklyorDaily	;
 	private String	StockName	;
-	private String	TradeDate	;
+	private String	WeekDate	;
 	private String	OpenPriceWeekly	;
 	private String	HighPriceWeekly	;
 	private String	LowPriceWeekly	;
@@ -38,11 +38,11 @@ public class StockChartWeeklyData {
 	public void setStockName(String stockName) {
 		StockName = stockName;
 	}
-	public String getTradeDate() {
-		return TradeDate;
+	public String getWeekDate() {
+		return WeekDate;
 	}
-	public void setTradeDate(String TradeDate) {
-		TradeDate = TradeDate;
+	public void setWeekDate(String weekDate) {
+		WeekDate = weekDate;
 	}
 	public String getOpenPriceWeekly() {
 		return OpenPriceWeekly;

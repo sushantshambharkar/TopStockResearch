@@ -1,4 +1,4 @@
-2020-09-13 23:12:35,729  INFO [main] ConsoleLoggingListener:220 - [36m
+2020-09-15 11:38:04,384  INFO [main] ConsoleLoggingListener:220 - [36m
 
 -------------------------------------------------------------------------------------
      _______. _______ .______       _______ .__   __.  __  .___________.____    ____ 
@@ -15,8 +15,8 @@
  Learn Serenity BDD online at http://serenity-dojo.com                               
 -------------------------------------------------------------------------------------
 [0m
-2020-09-13 23:12:35,750  INFO [main] ConsoleLoggingListener:249 - Test Suite Started: get User selected values
-2020-09-13 23:12:35,927  INFO [main] ConsoleLoggingListener:266 - 
+2020-09-15 11:38:04,397  INFO [main] ConsoleLoggingListener:249 - Test Suite Started: get User selected values
+2020-09-15 11:38:04,565  INFO [main] ConsoleLoggingListener:266 - 
  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
 |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
@@ -24,9 +24,9 @@
   |_| |_____|____/ |_|   |____/ |_/_/   \_\_| \_\|_| |_____|____/ 
                                                                   
 
-TEST STARTED: save values from daily chart
--------------------------------------------------------------------(get-user-selected-values;save-values-from-daily-chart)
-2020-09-13 23:12:36,771  INFO [main] ConsoleLoggingListener:393 - 
+TEST STARTED: get values from daily chart
+-------------------------------------------------------------------(get-user-selected-values;get-values-from-daily-chart)
+2020-09-15 12:33:04,942  INFO [main] ConsoleLoggingListener:393 - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
  (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
@@ -34,9 +34,9 @@ TEST STARTED: save values from daily chart
  (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
         /_/                                                                
 
-TEST PASSED: save values from daily chart
+TEST PASSED: get values from daily chart
 ----------------------------------------------------------------------------
-2020-09-13 23:12:36,771  INFO [main] ConsoleLoggingListener:393 - 
+2020-09-15 12:33:04,955  INFO [main] ConsoleLoggingListener:393 - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
  (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
@@ -44,5 +44,5 @@ TEST PASSED: save values from daily chart
  (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
         /_/                                                                
 
-TEST PASSED: save values from daily chart
+TEST PASSED: get values from daily chart
 ----------------------------------------------------------------------------

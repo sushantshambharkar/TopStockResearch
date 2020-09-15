@@ -6,15 +6,10 @@ Feature: get User selected values
 #	Then  User select top stock 
 
 
-#Scenario: get values from daily chart 
-#	Given User open top stock 
-#	When  User open the daily chart 
-#	Then  User saves the daily chart values in excel
-#	When  User open the weekly chart
-
-	
-	
-	
-Scenario: save values from daily chart
+Scenario: get values from daily chart 
+	Given User open top stock 
+	When  User open the daily chart 
+	Then  User saves the daily chart values in excel
+	When  User open the weekly chart
 	Then  User saves the weekly chart values in excel
 	

@@ -5,9 +5,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileOutputStream;
+
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -101,7 +106,7 @@ public class TopstockresearchChartPage extends PageObject {
 		}
 		
 		
-		for (int x = 1  ;x < 10 ; x++)
+		for (int x = 1  ;x < 75 ; x++)
 		
 		{
 
@@ -124,6 +129,13 @@ public class TopstockresearchChartPage extends PageObject {
 				
 		usernavigation.click();
 					
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		WebDriver dailydriver = getDriver();
 	
 		Actions actionProvider = new Actions(dailydriver);
@@ -143,6 +155,8 @@ public class TopstockresearchChartPage extends PageObject {
 		metricvalues = metricvalues.replace("BB MB:", "BBMB:");
 		metricvalues = metricvalues.replace("BB LB:", "BBLB:");
 		metricvalues = metricvalues.replace("Macd Signal:", "MacdSignal:");
+		metricvalues = metricvalues.replace("EMA 6", "ema06:");
+		metricvalues = metricvalues.replace("EMA6", "ema06:");
 		
 		if (!metricvalues.contains("BBUB"))
 		{
@@ -157,16 +171,17 @@ public class TopstockresearchChartPage extends PageObject {
 		
 		
 		scriptname = StringUtils.rightPad(scriptname, 12, " ") ;
-		
 		dailyMetrics = "DAILY  " + scriptname + " " + metricvalues ;
+		metricvalues =" "; scriptname ="";
 		
+//		dailyMetrics = "DAILY  ACC          Date:2020-06-02  Open:1282.00  High:1299.30  Low:1272.80  Close:1287.10  Volume:980515.00  BBUB:1307.97  BBLB:1098.14  BBMB:1203.05  ema20:1214.65  EMA06:1266.48  RSI:68.88  MACD:51.84  MacdSignal:44.81  ADX:38.53  PDI:33.14  MDI:9.46  ";
 		System.out.println(dailyMetrics);
 		
-		metricvalues =" "; scriptname ="";
+		
 
-		String	WeeklyorDaily 		= dailyMetrics.substring(0, 8);	
-		String	StockName 			= dailyMetrics.substring(8, 20);	
-		String	TradeDate			= dailyMetrics.substring(26, 36);	
+		String	WeeklyorDaily 		= dailyMetrics.substring(0, 6);	
+		String	StockName 			= dailyMetrics.substring(6, 16);	
+		String	TradeDate			= dailyMetrics.substring(16, 26);	
 		String	OpenPriceDaily 		= dailyMetrics.substring(dailyMetrics.indexOf("Open:") + 5 , dailyMetrics.indexOf("High:"));
 		String	HighPriceDaily		= dailyMetrics.substring(dailyMetrics.indexOf("High:") + 5 , dailyMetrics.indexOf("Low:")); 
 		String	LowPriceDaily		= dailyMetrics.substring(dailyMetrics.indexOf("Low:") + 4 , dailyMetrics.indexOf("Close:"));
@@ -175,8 +190,8 @@ public class TopstockresearchChartPage extends PageObject {
 		String	BBUBDaily			= dailyMetrics.substring(dailyMetrics.indexOf("BBUB:") + 5 , dailyMetrics.indexOf("BBLB:"));
 		String	BBLBDaily			= dailyMetrics.substring(dailyMetrics.indexOf("BBLB:") + 5 , dailyMetrics.indexOf("BBMB:"));
 		String	BBMBDaily			= dailyMetrics.substring(dailyMetrics.indexOf("BBMB:") + 5 , dailyMetrics.indexOf("ema20:"));
-		String  ema20Daily     		= dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6 , dailyMetrics.indexOf("ema6:"));
-		String  ema06Daily     		= dailyMetrics.substring(dailyMetrics.indexOf("ema6:") + 6 , dailyMetrics.indexOf("RSI:"));
+		String  ema20Daily     		= dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6 , dailyMetrics.indexOf("ema06:"));
+		String  ema06Daily     		= dailyMetrics.substring(dailyMetrics.indexOf("ema06:") + 7 , dailyMetrics.indexOf("RSI:"));
 		String	RSIDaily			= dailyMetrics.substring(dailyMetrics.indexOf("RSI:") + 4 , dailyMetrics.indexOf("MACD:"));
 		String	MACDDaily			= dailyMetrics.substring(dailyMetrics.indexOf("MACD:") + 5 , dailyMetrics.indexOf("MacdSignal:"));
 		String	MacdSignalDaily		= dailyMetrics.substring(dailyMetrics.indexOf("MacdSignal:") + 11 , dailyMetrics.indexOf("ADX:"));
@@ -228,10 +243,6 @@ public class TopstockresearchChartPage extends PageObject {
 		stockChartDailyData.setADXDaily(ADXDaily);
 		stockChartDailyData.setPDIDaily(PDIDaily);
 		stockChartDailyData.setMDIDaily(MDIDaily);
-		
-		
-		
-		
 		stockChartDailyData.setADXDaily(ADXDaily);
 		
 		lststoryChartDailyData.add(stockChartDailyData);
@@ -268,7 +279,7 @@ public class TopstockresearchChartPage extends PageObject {
 			ChartLinkinNavBar.click();
 			
 			try {
-				Thread.sleep(15000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -279,13 +290,13 @@ public class TopstockresearchChartPage extends PageObject {
 			mySettingsdropdown.selectByVisibleText("WeeklyChart");
 			
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 			
-			for (int x = 1  ;x < 10 ; x++)
+			for (int x = 1  ;x < 75 ; x++)
 			
 			{
 
@@ -327,6 +338,10 @@ public class TopstockresearchChartPage extends PageObject {
 			metricvalues = metricvalues.replace("BB MB:", "BBMB:");
 			metricvalues = metricvalues.replace("BB LB:", "BBLB:");
 			metricvalues = metricvalues.replace("Macd Signal:", "MacdSignal:");
+			metricvalues = metricvalues.replace("EMA 6", "ema06:");
+			metricvalues = metricvalues.replace("EMA6", "ema06:");
+			metricvalues = metricvalues.replace("ema 6", "ema06:");
+			metricvalues = metricvalues.replace("ema6", "ema06:");
 			
 			if (!metricvalues.contains("BBUB"))
 			{
@@ -349,7 +364,7 @@ public class TopstockresearchChartPage extends PageObject {
 					
 			String	WeeklyorDaily 		= weeklyMetrics.substring(0, 8);	
 			String	StockName 			= weeklyMetrics.substring(8, 20);	
-			String	TradeDate			= weeklyMetrics.substring(26, 36);	
+			String	WeekDate			= weeklyMetrics.substring(26, 36);	
 			String	OpenPriceWeekly 	= weeklyMetrics.substring(weeklyMetrics.indexOf("Open:") + 5 , weeklyMetrics.indexOf("High:"));
 			String	HighPriceWeekly		= weeklyMetrics.substring(weeklyMetrics.indexOf("High:") + 5 , weeklyMetrics.indexOf("Low:")); 
 			String	LowPriceWeekly		= weeklyMetrics.substring(weeklyMetrics.indexOf("Low:") + 4 , weeklyMetrics.indexOf("Close:"));
@@ -358,8 +373,8 @@ public class TopstockresearchChartPage extends PageObject {
 			String	BBUBWeekly			= weeklyMetrics.substring(weeklyMetrics.indexOf("BBUB:") + 5 , weeklyMetrics.indexOf("BBLB:"));
 			String	BBLBWeekly			= weeklyMetrics.substring(weeklyMetrics.indexOf("BBLB:") + 5 , weeklyMetrics.indexOf("BBMB:"));
 			String	BBMBWeekly			= weeklyMetrics.substring(weeklyMetrics.indexOf("BBMB:") + 5 , weeklyMetrics.indexOf("ema20:"));
-			String  ema20Weekly     	= weeklyMetrics.substring(weeklyMetrics.indexOf("ema20:") + 6 , weeklyMetrics.indexOf("ema6:"));
-			String  ema06Weekly     	= weeklyMetrics.substring(weeklyMetrics.indexOf("ema6:") + 6 , weeklyMetrics.indexOf("RSI:"));
+			String  ema20Weekly     	= weeklyMetrics.substring(weeklyMetrics.indexOf("ema20:") + 6 , weeklyMetrics.indexOf("ema06:"));
+			String  ema06Weekly     	= weeklyMetrics.substring(weeklyMetrics.indexOf("ema06:") + 7 , weeklyMetrics.indexOf("RSI:"));
 			String	RSIWeekly			= weeklyMetrics.substring(weeklyMetrics.indexOf("RSI:") + 4 , weeklyMetrics.indexOf("MACD:"));
 			String	MACDWeekly			= weeklyMetrics.substring(weeklyMetrics.indexOf("MACD:") + 5 , weeklyMetrics.indexOf("MacdSignal:"));
 			String	MacdSignalWeekly	= weeklyMetrics.substring(weeklyMetrics.indexOf("MacdSignal:") + 11 , weeklyMetrics.indexOf("ADX:"));
@@ -370,7 +385,7 @@ public class TopstockresearchChartPage extends PageObject {
 			
 			System.out.println("WeeklyorDaily	" +	WeeklyorDaily)	;
 			System.out.println("StockName	" +	StockName	);
-			System.out.println("TradeDate	" +	TradeDate			);
+			System.out.println("TradeDate	" +	WeekDate);
 			System.out.println("OpenPriceWeekly	" +	OpenPriceWeekly	);
 			System.out.println("HighPriceWeekly		" +	HighPriceWeekly		);
 			System.out.println("LowPriceWeekly		" +	LowPriceWeekly		);
@@ -393,7 +408,7 @@ public class TopstockresearchChartPage extends PageObject {
 			
 			stockChartWeeklyData.setWeeklyorDaily(WeeklyorDaily);
 			stockChartWeeklyData.setStockName(StockName);
-			stockChartWeeklyData.setTradeDate(TradeDate);
+			stockChartWeeklyData.setWeekDate(WeekDate);
 			stockChartWeeklyData.setOpenPriceWeekly(OpenPriceWeekly);
 			stockChartWeeklyData.setHighPriceWeekly(HighPriceWeekly);
 			stockChartWeeklyData.setLowPriceWeekly(LowPriceWeekly);
@@ -410,10 +425,6 @@ public class TopstockresearchChartPage extends PageObject {
 			stockChartWeeklyData.setADXWeekly(ADXWeekly);
 			stockChartWeeklyData.setPDIWeekly(PDIWeekly);
 			stockChartWeeklyData.setMDIWeekly(MDIWeekly);
-			
-			
-			
-			
 			stockChartWeeklyData.setADXWeekly(ADXWeekly);
 			
 			lststoryChartWeeklyData.add(stockChartWeeklyData);
@@ -439,12 +450,10 @@ public class TopstockresearchChartPage extends PageObject {
 
 	public void saveweeklychartvalues() {
 
-		for (int rowCount= 0 ; rowCount < lststoryChartWeeklyData.size(); rowCount++)
-		{
 			
 			
 			String fileName ="WeeklyData.xlsx";
-			File file = new File ("c:/WeeklyData.xlsx");
+			File file = new File ("c://Selenium//WeeklyData.xlsx");
 			
 			Workbook weeklyworkBook = null;
 			FileInputStream weeklyfileInputStream = null;
@@ -464,15 +473,275 @@ public class TopstockresearchChartPage extends PageObject {
 			
 			
 			
-		}
+			Sheet sheet = weeklyworkBook.getSheet("Data");
+
+		    //Get the current count of rows in excel file
+
+		    int rCount = sheet.getLastRowNum()-sheet.getFirstRowNum();
+
+		    //Get the first row from the sheet
+
+		    Row row = sheet.getRow(0);
+
+		    //Create a new row and append it at last of sheet
+
+		 
+		    //Create a loop over the cell of newly created Row
+
+			for (int rowCount= 0 ; rowCount < lststoryChartWeeklyData.size(); rowCount++)
+			{
+				
+				   Row newRow = sheet.createRow(rowCount+1);
+
+			{
+
+		        //Fill data in row
+
+
+		        Cell cell = newRow.createCell(0);
+		        cell.setCellValue(lststoryChartWeeklyData.get(rowCount).getWeeklyorDaily());
+	        
+		        Cell cell1 = newRow.createCell(1);
+		        cell1.setCellValue(lststoryChartWeeklyData.get(rowCount).getWeekDate());
+		        		        
+		        Cell cell2 = newRow.createCell(2);
+		        cell2.setCellValue(lststoryChartWeeklyData.get(rowCount).getStockName());
+		        
+		        Cell cell3 = newRow.createCell(3);
+		        cell3.setCellValue(lststoryChartWeeklyData.get(rowCount).getOpenPriceWeekly());
+		        
+		        Cell cell4 = newRow.createCell(4);
+		        cell4.setCellValue(lststoryChartWeeklyData.get(rowCount).getHighPriceWeekly());
+		        
+		        Cell cell5 = newRow.createCell(5);
+		        cell5.setCellValue(lststoryChartWeeklyData.get(rowCount).getLowPriceWeekly());
+		        
+		        
+		        Cell cell6 = newRow.createCell(6);
+		        cell6.setCellValue(lststoryChartWeeklyData.get(rowCount).getClosePriceWeekly());
+		        
+		        Cell cell7 = newRow.createCell(7);
+		        cell7.setCellValue(lststoryChartWeeklyData.get(rowCount).getVolumeWeekly());
+		        
+			       
+		        Cell cell8 = newRow.createCell(8);
+		        cell8.setCellValue(lststoryChartWeeklyData.get(rowCount).getBBUBWeekly());
+		        
+			       
+		        Cell cell9 = newRow.createCell(9);
+		        cell9.setCellValue(lststoryChartWeeklyData.get(rowCount).getBBLBWeekly());
+
+		        Cell cell10 = newRow.createCell(10);
+		        cell10.setCellValue(lststoryChartWeeklyData.get(rowCount).getBBMBWeekly());
+
+			       
+		        Cell cell11 = newRow.createCell(11);
+		        cell11.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma20Weekly());
+		        
+		        Cell cell12 = newRow.createCell(12);
+		        cell12.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma06Weekly());
+		        
+		        Cell cell13 = newRow.createCell(13);
+		        cell13.setCellValue(lststoryChartWeeklyData.get(rowCount).getRSIWeekly());
+		        
+		       
+		        Cell cell14 = newRow.createCell(14);
+		        cell14.setCellValue(lststoryChartWeeklyData.get(rowCount).getMACDWeekly());
+
+		        Cell cell15 = newRow.createCell(15);
+		        cell15.setCellValue(lststoryChartWeeklyData.get(rowCount).getMacdSignalWeekly());
+		        
+	       
+		        Cell cell16 = newRow.createCell(16);
+		        cell16.setCellValue(lststoryChartWeeklyData.get(rowCount).getADXWeekly());
+
+		        Cell cell17 = newRow.createCell(17);
+		        cell17.setCellValue(lststoryChartWeeklyData.get(rowCount).getPDIWeekly());
+		        
+	       
+		        Cell cell18 = newRow.createCell(18);
+		        cell18.setCellValue(lststoryChartWeeklyData.get(rowCount).getMDIWeekly());
+
+	        
+		    }
+
+		    
+		    //Close input stream
+
+		    try {
+				weeklyfileInputStream.close();
+			
+
+		    //Create an object of FileOutputStream class to create write data in excel file
+
+		    FileOutputStream weeklyOutputStream = new FileOutputStream(file);
+
+		    //write data in the excel file
+
+		    weeklyworkBook.write(weeklyOutputStream);
+
+		    //close output stream
+
+		    weeklyOutputStream.close();
+		    
+		    } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		    }
+
+	}
+
+
 
 		
-	}
+
 
 
 
 	public void savedailychartvalues() {
 	
+		
+		String fileName ="DailyData.xlsx";
+		File file = new File ("c://Selenium//DailyData.xlsx");
+		
+		Workbook dailyworkBook = null;
+		FileInputStream dailyfileInputStream = null;
+		
+		System.out.println(file);
+		
+		try {
+			
+			dailyfileInputStream = new FileInputStream(file);
+			dailyworkBook = new XSSFWorkbook(dailyfileInputStream);
+			
+		} catch (IOException e1)
+		
+		{
+			e1.printStackTrace();
+		}
+		
+		
+		
+		Sheet sheet = dailyworkBook.getSheet("Data");
+
+	    //Get the current count of rows in excel file
+
+	    int rCount = sheet.getLastRowNum()-sheet.getFirstRowNum();
+
+	    //Get the first row from the sheet
+
+	    Row row = sheet.getRow(0);
+
+	    //Create a new row and append it at last of sheet
+
+	 
+	    //Create a loop over the cell of newly created Row
+
+		for (int rowCount= 0 ; rowCount < lststoryChartDailyData.size(); rowCount++)
+		{
+			
+			   Row newRow = sheet.createRow(rowCount+1);
+
+		{
+
+	        //Fill data in row
+
+
+	        Cell cell = newRow.createCell(0);
+	        cell.setCellValue(lststoryChartDailyData.get(rowCount).getWeeklyorDaily());
+        
+	        Cell cell1 = newRow.createCell(1);
+	        cell1.setCellValue(lststoryChartDailyData.get(rowCount).getTradeDate());
+	        		        
+	        Cell cell2 = newRow.createCell(2);
+	        cell2.setCellValue(lststoryChartDailyData.get(rowCount).getStockName());
+	        
+	        Cell cell3 = newRow.createCell(3);
+	        cell3.setCellValue(lststoryChartDailyData.get(rowCount).getOpenPriceDaily());
+	        
+	        Cell cell4 = newRow.createCell(4);
+	        cell4.setCellValue(lststoryChartDailyData.get(rowCount).getHighPriceDaily());
+	        
+	        Cell cell5 = newRow.createCell(5);
+	        cell5.setCellValue(lststoryChartDailyData.get(rowCount).getLowPriceDaily());
+	        
+	        
+	        Cell cell6 = newRow.createCell(6);
+	        cell6.setCellValue(lststoryChartDailyData.get(rowCount).getClosePriceDaily());
+	        
+	        Cell cell7 = newRow.createCell(7);
+	        cell7.setCellValue(lststoryChartDailyData.get(rowCount).getVolumeDaily());
+	        
+		       
+	        Cell cell8 = newRow.createCell(8);
+	        cell8.setCellValue(lststoryChartDailyData.get(rowCount).getBBUBDaily());
+	        
+		       
+	        Cell cell9 = newRow.createCell(9);
+	        cell9.setCellValue(lststoryChartDailyData.get(rowCount).getBBLBDaily());
+
+	        Cell cell10 = newRow.createCell(10);
+	        cell10.setCellValue(lststoryChartDailyData.get(rowCount).getBBMBDaily());
+
+		       
+	        Cell cell11 = newRow.createCell(11);
+	        cell11.setCellValue(lststoryChartDailyData.get(rowCount).getEma20Daily());
+	        
+	        Cell cell12 = newRow.createCell(12);
+	        cell12.setCellValue(lststoryChartDailyData.get(rowCount).getEma06Daily());
+	        
+	        Cell cell13 = newRow.createCell(13);
+	        cell13.setCellValue(lststoryChartDailyData.get(rowCount).getRSIDaily());
+	        
+	       
+	        Cell cell14 = newRow.createCell(14);
+	        cell14.setCellValue(lststoryChartDailyData.get(rowCount).getMACDDaily());
+
+	        Cell cell15 = newRow.createCell(15);
+	        cell15.setCellValue(lststoryChartDailyData.get(rowCount).getMacdSignalDaily());
+	        
+       
+	        Cell cell16 = newRow.createCell(16);
+	        cell16.setCellValue(lststoryChartDailyData.get(rowCount).getADXDaily());
+
+	        Cell cell17 = newRow.createCell(17);
+	        cell17.setCellValue(lststoryChartDailyData.get(rowCount).getPDIDaily());
+	        
+       
+	        Cell cell18 = newRow.createCell(18);
+	        cell18.setCellValue(lststoryChartDailyData.get(rowCount).getMDIDaily());
+
+        
+	    }
+
+	    
+	    //Close input stream
+
+	    try {
+			dailyfileInputStream.close();
+		
+
+	    //Create an object of FileOutputStream class to create write data in excel file
+
+	    FileOutputStream dailyOutputStream = new FileOutputStream(file);
+
+	    //write data in the excel file
+
+	    dailyworkBook.write(dailyOutputStream);
+
+	    //close output stream
+
+	    dailyOutputStream.close();
+	    
+	    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	    }
+		
 	}
 
 }

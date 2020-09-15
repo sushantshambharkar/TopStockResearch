@@ -39,8 +39,8 @@ public class StockChartDailyData {
 	public String getTradeDate() {
 		return TradeDate;
 	}
-	public void setTradeDate(String TradeDate) {
-		TradeDate = TradeDate;
+	public void setTradeDate(String tradeDate) {
+		TradeDate = tradeDate;
 	}
 	public String getOpenPriceDaily() {
 		return OpenPriceDaily;
