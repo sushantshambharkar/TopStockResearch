@@ -25,6 +25,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 import pojos.StockChartWeeklyData;
 import pojos.StockChartDailyData;
 
+
 @DefaultUrl("https://my.topstockresearch.com/")
 public class TopstockresearchChartPage extends PageObject {
 		
