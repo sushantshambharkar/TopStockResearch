@@ -28,6 +28,7 @@ import pojos.StockChartDailyData;
 @DefaultUrl("https://my.topstockresearch.com/")
 public class TopstockresearchChartPage extends PageObject {
 		
+	
 	@FindBy(xpath = "//input[@id=\"chartStkchg\"]")
 	WebElementFacade userInput;
 	
