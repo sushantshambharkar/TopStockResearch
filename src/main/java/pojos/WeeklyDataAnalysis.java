@@ -28,6 +28,7 @@ public class WeeklyDataAnalysis {
 	private Number	MDIWeekly	;
 	
 	
+	
 	public String getWeeklyorDaily() {
 		return WeeklyorDaily;
 	}
