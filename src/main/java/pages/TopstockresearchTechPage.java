@@ -16,12 +16,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-import excelutil.SaveTechDataInExcel;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 import pojos.StockRecord;
+import util.SaveTechDataInExcel;
 
 public class TopstockresearchTechPage extends PageObject{
 	

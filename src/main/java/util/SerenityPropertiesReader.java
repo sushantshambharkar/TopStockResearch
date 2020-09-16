@@ -1,4 +1,4 @@
-package excelutil;
+package util;
 
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;

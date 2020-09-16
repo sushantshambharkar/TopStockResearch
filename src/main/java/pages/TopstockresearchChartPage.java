@@ -181,9 +181,10 @@ public class TopstockresearchChartPage extends PageObject {
 		
 		
 
-		String	WeeklyorDaily 		= dailyMetrics.substring(0, 6);	
-		String	StockName 			= dailyMetrics.substring(6, 16);	
-		String	TradeDate			= dailyMetrics.substring(16, 26);	
+		
+		String	WeeklyorDaily 		= dailyMetrics.substring(0, 8);	
+		String	StockName 			= dailyMetrics.substring(8, 20);	
+		String	TradeDate			= dailyMetrics.substring(26, 36);		
 		String	OpenPriceDaily 		= dailyMetrics.substring(dailyMetrics.indexOf("Open:") + 5 , dailyMetrics.indexOf("High:"));
 		String	HighPriceDaily		= dailyMetrics.substring(dailyMetrics.indexOf("High:") + 5 , dailyMetrics.indexOf("Low:")); 
 		String	LowPriceDaily		= dailyMetrics.substring(dailyMetrics.indexOf("Low:") + 4 , dailyMetrics.indexOf("Close:"));
@@ -203,8 +204,8 @@ public class TopstockresearchChartPage extends PageObject {
 		
 		
 		System.out.println("DailyorDaily	" +	WeeklyorDaily)	;
-		System.out.println("StockName	" +	StockName	);
-		System.out.println("TradeDate	" +	TradeDate			);
+		System.out.println("StockName	" 	+	StockName	);
+		System.out.println("TradeDate	" 	+	TradeDate			);
 		System.out.println("OpenPriceDaily	" +	OpenPriceDaily	);
 		System.out.println("HighPriceDaily		" +	HighPriceDaily		);
 		System.out.println("LowPriceDaily		" +	LowPriceDaily		);

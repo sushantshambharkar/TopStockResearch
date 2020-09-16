@@ -1,4 +1,4 @@
-package excelutil;
+package util;
 
 public class myfirstprogram {
 
@@ -6,7 +6,7 @@ public class myfirstprogram {
 		// TODO Auto-generated method stub
 
 		
-		DatabseConnection dc = new DatabseConnection ();
+		DatabaseConnection dc = new DatabaseConnection ();
 		dc.databaseConnection();
 		
 		

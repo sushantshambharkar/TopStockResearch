@@ -22,8 +22,7 @@ public class StockChartDailyData {
 	private String	ADXDaily	;
 	private String	PDIDaily	;
 	private String	MDIDaily	;
-	
-	
+		
 	public String getWeeklyorDaily() {
 		return WeeklyorDaily;
 	}
