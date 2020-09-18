@@ -1,6 +1,7 @@
 
 package Steps;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import net.thucydides.core.annotations.Step;
@@ -13,7 +14,6 @@ public class TopStockResearchChartSteps {
 	private TopstockresearchChartPage topstockresearchChartPage;
 	private CreateFNOList createFNOList;
 	private LoginPage loginpage;
-	
 	
 	ArrayList<String> lista = new ArrayList<String> ();
 	
@@ -57,7 +57,7 @@ public class TopStockResearchChartSteps {
 	}
 
 
-	public void saveValuesFromWeeklychart() {
+	public void saveValuesFromWeeklychart() throws Exception {
 		
 		topstockresearchChartPage.saveweeklychartvalues();
 		
@@ -69,5 +69,10 @@ public class TopStockResearchChartSteps {
 		
 	}
 
-
+	public void AnalyseandSaveinDB() throws ParseException
+	{
+		topstockresearchChartPage.AnalyzeData();
+		
+		topstockresearchChartPage.DisplayStocksData();
+	}
 }

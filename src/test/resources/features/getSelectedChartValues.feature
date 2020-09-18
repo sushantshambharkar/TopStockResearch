@@ -12,4 +12,5 @@ Scenario: get values from daily chart
 	Then  User saves the daily chart values in excel
 	When  User open the weekly chart
 	Then  User saves the weekly chart values in excel
+	Then  User Analyses the Data and saves in DB
 	

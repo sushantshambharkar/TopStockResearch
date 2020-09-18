@@ -8,22 +8,31 @@ public class DailyDataAnalysis {
 	private String	WeeklyorDaily	;
 	private String	StockName	;
 	private Date	TradeDate	;
-	private Number	OpenPriceDaily	;
-	private Number	HighPriceDaily	;
-	private Number	LowPriceDaily	;
-	private Number	ClosePriceDaily	;
-	private Number	VolumeDaily	;
-	private Number	BBUBDaily	;
-	private Number	BBLBDaily	;
-	private Number	BBMBDaily	;
-	private Number	ema20Daily	;
-	private Number	ema06Daily	;
-	private Number	RSIDaily	;
-	private Number	MACDDaily	;
-	private Number	MacdSignalDaily	;
-	private Number	ADXDaily	;
-	private Number	PDIDaily	;
-	private Number	MDIDaily	;
+	private Double	OpenPriceDaily	;
+	private Double	HighPriceDaily	;
+	private Double	LowPriceDaily	;
+	private Double	ClosePriceDaily	;
+	private Double	VolumeDaily	;
+	private Double	BBUBDaily	;
+	private Double	BBLBDaily	;
+	private Double	BBMBDaily	;
+	private Double	ema20Daily	;
+	private Double	ema06Daily	;
+	private Double	RSIDaily	;
+	private Double	MACDDaily	;
+	private Double	MacdSignalDaily	;
+	private Double	ADXDaily	;
+	private Double	PDIDaily	;
+	private Double	MDIDaily	;
+	private String  MACDBuyOrSell;
+	private Double  MACDAboveSignal;
+	private String  RSIBuyOrSell;
+	private String  BBBuyOrSell;
+	private String  ADXBuyOrSell;
+	private String  EMABuyOrSell;
+	
+	
+	
 		
 	public String getWeeklyorDaily() {
 		return WeeklyorDaily;
@@ -43,101 +52,137 @@ public class DailyDataAnalysis {
 	public void setTradeDate(Date tradeDate) {
 		TradeDate = tradeDate;
 	}
-	public Number getOpenPriceDaily() {
+	public Double getOpenPriceDaily() {
 		return OpenPriceDaily;
 	}
-	public void setOpenPriceDaily(Number openPriceDaily) {
+	public void setOpenPriceDaily(Double openPriceDaily) {
 		OpenPriceDaily = openPriceDaily;
 	}
-	public Number getHighPriceDaily() {
+	public Double getHighPriceDaily() {
 		return HighPriceDaily;
 	}
-	public void setHighPriceDaily(Number highPriceDaily) {
+	public void setHighPriceDaily(Double highPriceDaily) {
 		HighPriceDaily = highPriceDaily;
 	}
-	public Number getLowPriceDaily() {
+	public Double getLowPriceDaily() {
 		return LowPriceDaily;
 	}
-	public void setLowPriceDaily(Number lowPriceDaily) {
+	public void setLowPriceDaily(Double lowPriceDaily) {
 		LowPriceDaily = lowPriceDaily;
 	}
-	public Number getClosePriceDaily() {
+	public Double getClosePriceDaily() {
 		return ClosePriceDaily;
 	}
-	public void setClosePriceDaily(Number closePriceDaily) {
+	public void setClosePriceDaily(Double closePriceDaily) {
 		ClosePriceDaily = closePriceDaily;
 	}
-	public Number getVolumeDaily() {
+	public Double getVolumeDaily() {
 		return VolumeDaily;
 	}
-	public void setVolumeDaily(Number volumeDaily) {
+	public void setVolumeDaily(Double volumeDaily) {
 		VolumeDaily = volumeDaily;
 	}
-	public Number getBBUBDaily() {
+	public Double getBBUBDaily() {
 		return BBUBDaily;
 	}
-	public void setBBUBDaily(Number bBUBDaily) {
+	public void setBBUBDaily(Double bBUBDaily) {
 		BBUBDaily = bBUBDaily;
 	}
-	public Number getBBLBDaily() {
+	public Double getBBLBDaily() {
 		return BBLBDaily;
 	}
-	public void setBBLBDaily(Number bBLBDaily) {
+	public void setBBLBDaily(Double bBLBDaily) {
 		BBLBDaily = bBLBDaily;
 	}
-	public Number getBBMBDaily() {
+	public Double getBBMBDaily() {
 		return BBMBDaily;
 	}
-	public void setBBMBDaily(Number bBMBDaily) {
+	public void setBBMBDaily(Double bBMBDaily) {
 		BBMBDaily = bBMBDaily;
 	}
-	public Number getEma20Daily() {
+	public Double getEma20Daily() {
 		return ema20Daily;
 	}
-	public void setEma20Daily(Number ema20Daily) {
+	public void setEma20Daily(Double ema20Daily) {
 		this.ema20Daily = ema20Daily;
 	}
-	public Number getEma06Daily() {
+	public Double getEma06Daily() {
 		return ema06Daily;
 	}
-	public void setEma06Daily(Number ema06Daily) {
+	public void setEma06Daily(Double ema06Daily) {
 		this.ema06Daily = ema06Daily;
 	}
-	public Number getRSIDaily() {
+	public Double getRSIDaily() {
 		return RSIDaily;
 	}
-	public void setRSIDaily(Number rSIDaily) {
+	public void setRSIDaily(Double rSIDaily) {
 		RSIDaily = rSIDaily;
 	}
-	public Number getMACDDaily() {
+	public Double getMACDDaily() {
 		return MACDDaily;
 	}
-	public void setMACDDaily(Number mACDDaily) {
+	public void setMACDDaily(Double mACDDaily) {
 		MACDDaily = mACDDaily;
 	}
-	public Number getMacdSignalDaily() {
+	public Double getMacdSignalDaily() {
 		return MacdSignalDaily;
 	}
-	public void setMacdSignalDaily(Number macdSignalDaily) {
+	public void setMacdSignalDaily(Double macdSignalDaily) {
 		MacdSignalDaily = macdSignalDaily;
 	}
-	public Number getADXDaily() {
+	public Double getADXDaily() {
 		return ADXDaily;
 	}
-	public void setADXDaily(Number aDXDaily) {
+	public void setADXDaily(Double aDXDaily) {
 		ADXDaily = aDXDaily;
 	}
-	public Number getPDIDaily() {
+	public Double getPDIDaily() {
 		return PDIDaily;
 	}
-	public void setPDIDaily(Number pDIDaily) {
+	public void setPDIDaily(Double pDIDaily) {
 		PDIDaily = pDIDaily;
 	}
-	public Number getMDIDaily() {
+	public Double getMDIDaily() {
 		return MDIDaily;
 	}
-	public void setMDIDaily(Number mDIDaily) {
+	public void setMDIDaily(Double mDIDaily) {
 		MDIDaily = mDIDaily;
+	}
+	public String getMACDBuyOrSell() {
+		return MACDBuyOrSell;
+	}
+	public void setMACDBuyOrSell(String mACDBuyOrSell) {
+		MACDBuyOrSell = mACDBuyOrSell;
+	}
+	public Double getMACDAboveSignal() {
+		return MACDAboveSignal;
+	}
+	public void setMACDAboveSignal(Double mACDAboveSignal) {
+		MACDAboveSignal = mACDAboveSignal;
+	}
+	public String getRSIBuyOrSell() {
+		return RSIBuyOrSell;
+	}
+	public void setRSIBuyOrSell(String rSIBuyOrSell) {
+		RSIBuyOrSell = rSIBuyOrSell;
+	}
+	public String getBBBuyOrSell() {
+		return BBBuyOrSell;
+	}
+	public void setBBBuyOrSell(String bBBuyOrSell) {
+		BBBuyOrSell = bBBuyOrSell;
+	}
+	public String getADXBuyOrSell() {
+		return ADXBuyOrSell;
+	}
+	public void setADXBuyOrSell(String aDXBuyOrSell) {
+		ADXBuyOrSell = aDXBuyOrSell;
+	}
+	public String getEMABuyOrSell() {
+		return EMABuyOrSell;
+	}
+	public void setEMABuyOrSell(String eMABuyOrSell) {
+		EMABuyOrSell = eMABuyOrSell;
 	}
 
 }

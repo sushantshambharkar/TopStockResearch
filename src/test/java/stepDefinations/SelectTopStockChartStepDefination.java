@@ -1,5 +1,7 @@
 package stepDefinations;
 
+import java.text.ParseException;
+
 import Steps.TopStockResearchChartSteps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -30,6 +32,7 @@ public class SelectTopStockChartStepDefination {
 	public void user_saves_the_daily_chart_values_in_excel() {
 		
 		topStockResearchChartStep.saveValuesFromDailyChart();
+	
 		
 	}
 	
@@ -41,9 +44,14 @@ public class SelectTopStockChartStepDefination {
 	}
 
 	@Then("^User saves the weekly chart values in excel$")
-	public void user_saves_the_weekly_chart_values_in_excel() {
+	public void user_saves_the_weekly_chart_values_in_excel() throws Exception {
 		topStockResearchChartStep.saveValuesFromWeeklychart();
+		
 	}
 
+	@Then("^User Analyses the Data and saves in DB$")
+	public void user_Analyses_the_Data_and_saves_in_DB() throws ParseException {
+		topStockResearchChartStep.AnalyseandSaveinDB();
 
+	}
 }

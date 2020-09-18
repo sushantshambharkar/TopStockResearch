@@ -10,23 +10,28 @@ public class WeeklyDataAnalysis {
 	private String	WeeklyorDaily	;
 	private String	StockName	;
 	private Date	WeekDate	;
-	private Number	OpenPriceWeekly	;
-	private Number	HighPriceWeekly	;
-	private Number	LowPriceWeekly	;
-	private Number	ClosePriceWeekly	;
-	private Number	VolumeWeekly	;
-	private Number	BBUBWeekly	;
-	private Number	BBLBWeekly	;
-	private Number	BBMBWeekly	;
-	private Number	ema20Weekly	;
-	private Number	ema06Weekly	;
-	private Number	RSIWeekly	;
-	private Number	MACDWeekly	;
-	private Number	MacdSignalWeekly	;
-	private Number	ADXWeekly	;
-	private Number	PDIWeekly	;
-	private Number	MDIWeekly	;
-	
+	private Double	OpenPriceWeekly	;
+	private Double	HighPriceWeekly	;
+	private Double	LowPriceWeekly	;
+	private Double	ClosePriceWeekly	;
+	private Double	VolumeWeekly	;
+	private Double	BBUBWeekly	;
+	private Double	BBLBWeekly	;
+	private Double	BBMBWeekly	;
+	private Double	ema20Weekly	;
+	private Double	ema06Weekly	;
+	private Double	RSIWeekly	;
+	private Double	MACDWeekly	;
+	private Double	MacdSignalWeekly	;
+	private Double	ADXWeekly	;
+	private Double	PDIWeekly	;
+	private Double	MDIWeekly	;
+	private String  MACDBuyOrSell;
+	private Double  MACDAboveSignal;
+	private String  RSIBuyOrSell;
+	private String  BBBuyOrSell;
+	private String  ADXBuyOrSell;
+	private String  EMABuyOrSell;
 	
 	
 	public String getWeeklyorDaily() {
@@ -47,101 +52,137 @@ public class WeeklyDataAnalysis {
 	public void setWeekDate(Date weekDate) {
 		WeekDate = weekDate;
 	}
-	public Number getOpenPriceWeekly() {
+	public Double getOpenPriceWeekly() {
 		return OpenPriceWeekly;
 	}
-	public void setOpenPriceWeekly(Number openPriceWeekly) {
+	public void setOpenPriceWeekly(Double openPriceWeekly) {
 		OpenPriceWeekly = openPriceWeekly;
 	}
-	public Number getHighPriceWeekly() {
+	public Double getHighPriceWeekly() {
 		return HighPriceWeekly;
 	}
-	public void setHighPriceWeekly(Number highPriceWeekly) {
+	public void setHighPriceWeekly(Double highPriceWeekly) {
 		HighPriceWeekly = highPriceWeekly;
 	}
-	public Number getLowPriceWeekly() {
+	public Double getLowPriceWeekly() {
 		return LowPriceWeekly;
 	}
-	public void setLowPriceWeekly(Number lowPriceWeekly) {
+	public void setLowPriceWeekly(Double lowPriceWeekly) {
 		LowPriceWeekly = lowPriceWeekly;
 	}
-	public Number getClosePriceWeekly() {
+	public Double getClosePriceWeekly() {
 		return ClosePriceWeekly;
 	}
-	public void setClosePriceWeekly(Number closePriceWeekly) {
+	public void setClosePriceWeekly(Double closePriceWeekly) {
 		ClosePriceWeekly = closePriceWeekly;
 	}
-	public Number getVolumeWeekly() {
+	public Double getVolumeWeekly() {
 		return VolumeWeekly;
 	}
-	public void setVolumeWeekly(Number volumeWeekly) {
+	public void setVolumeWeekly(Double volumeWeekly) {
 		VolumeWeekly = volumeWeekly;
 	}
-	public Number getBBUBWeekly() {
+	public Double getBBUBWeekly() {
 		return BBUBWeekly;
 	}
-	public void setBBUBWeekly(Number bBUBWeekly) {
+	public void setBBUBWeekly(Double bBUBWeekly) {
 		BBUBWeekly = bBUBWeekly;
 	}
-	public Number getBBLBWeekly() {
+	public Double getBBLBWeekly() {
 		return BBLBWeekly;
 	}
-	public void setBBLBWeekly(Number bBLBWeekly) {
+	public void setBBLBWeekly(Double bBLBWeekly) {
 		BBLBWeekly = bBLBWeekly;
 	}
-	public Number getBBMBWeekly() {
+	public Double getBBMBWeekly() {
 		return BBMBWeekly;
 	}
-	public void setBBMBWeekly(Number bBMBWeekly) {
+	public void setBBMBWeekly(Double bBMBWeekly) {
 		BBMBWeekly = bBMBWeekly;
 	}
-	public Number getEma20Weekly() {
+	public Double getEma20Weekly() {
 		return ema20Weekly;
 	}
-	public void setEma20Weekly(Number ema20Weekly) {
+	public void setEma20Weekly(Double ema20Weekly) {
 		this.ema20Weekly = ema20Weekly;
 	}
-	public Number getEma06Weekly() {
+	public Double getEma06Weekly() {
 		return ema06Weekly;
 	}
-	public void setEma06Weekly(Number ema06Weekly) {
+	public void setEma06Weekly(Double ema06Weekly) {
 		this.ema06Weekly = ema06Weekly;
 	}
-	public Number getRSIWeekly() {
+	public Double getRSIWeekly() {
 		return RSIWeekly;
 	}
-	public void setRSIWeekly(Number rSIWeekly) {
+	public void setRSIWeekly(Double rSIWeekly) {
 		RSIWeekly = rSIWeekly;
 	}
-	public Number getMACDWeekly() {
+	public Double getMACDWeekly() {
 		return MACDWeekly;
 	}
-	public void setMACDWeekly(Number mACDWeekly) {
+	public void setMACDWeekly(Double mACDWeekly) {
 		MACDWeekly = mACDWeekly;
 	}
-	public Number getMacdSignalWeekly() {
+	public Double getMacdSignalWeekly() {
 		return MacdSignalWeekly;
 	}
-	public void setMacdSignalWeekly(Number macdSignalWeekly) {
+	public void setMacdSignalWeekly(Double macdSignalWeekly) {
 		MacdSignalWeekly = macdSignalWeekly;
 	}
-	public Number getADXWeekly() {
+	public Double getADXWeekly() {
 		return ADXWeekly;
 	}
-	public void setADXWeekly(Number aDXWeekly) {
+	public void setADXWeekly(Double aDXWeekly) {
 		ADXWeekly = aDXWeekly;
 	}
-	public Number getPDIWeekly() {
+	public Double getPDIWeekly() {
 		return PDIWeekly;
 	}
-	public void setPDIWeekly(Number pDIWeekly) {
+	public void setPDIWeekly(Double pDIWeekly) {
 		PDIWeekly = pDIWeekly;
 	}
-	public Number getMDIWeekly() {
+	public Double getMDIWeekly() {
 		return MDIWeekly;
 	}
-	public void setMDIWeekly(Number mDIWeekly) {
+	public void setMDIWeekly(Double mDIWeekly) {
 		MDIWeekly = mDIWeekly;
+	}
+	public String getMACDBuyOrSell() {
+		return MACDBuyOrSell;
+	}
+	public void setMACDBuyOrSell(String mACDBuyOrSell) {
+		MACDBuyOrSell = mACDBuyOrSell;
+	}
+	public Double getMACDAboveSignal() {
+		return MACDAboveSignal;
+	}
+	public void setMACDAboveSignal(Double mACDAboveSignal) {
+		MACDAboveSignal = mACDAboveSignal;
+	}
+	public String getRSIBuyOrSell() {
+		return RSIBuyOrSell;
+	}
+	public void setRSIBuyOrSell(String rSIBuyOrSell) {
+		RSIBuyOrSell = rSIBuyOrSell;
+	}
+	public String getBBBuyOrSell() {
+		return BBBuyOrSell;
+	}
+	public void setBBBuyOrSell(String bBBuyOrSell) {
+		BBBuyOrSell = bBBuyOrSell;
+	}
+	public String getADXBuyOrSell() {
+		return ADXBuyOrSell;
+	}
+	public void setADXBuyOrSell(String aDXBuyOrSell) {
+		ADXBuyOrSell = aDXBuyOrSell;
+	}
+	public String getEMABuyOrSell() {
+		return EMABuyOrSell;
+	}
+	public void setEMABuyOrSell(String eMABuyOrSell) {
+		EMABuyOrSell = eMABuyOrSell;
 	}
 
 	
