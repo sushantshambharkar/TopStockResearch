@@ -84,6 +84,7 @@ public class DatabaseConnection {
 
 			PreparedStatement pst = conn.prepareStatement(query);
 			
+			
 
 			try {
 				pst.executeQuery();
