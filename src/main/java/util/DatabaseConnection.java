@@ -83,6 +83,7 @@ public class DatabaseConnection {
 	//		System.out.println("query  " + query);
 
 			PreparedStatement pst = conn.prepareStatement(query);
+			
 
 			try {
 				pst.executeQuery();
