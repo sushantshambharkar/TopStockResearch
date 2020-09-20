@@ -74,5 +74,9 @@ public class TopStockResearchChartSteps {
 		topstockresearchChartPage.AnalyzeData();
 		
 		topstockresearchChartPage.DisplayStocksData();
+		
+		topstockresearchChartPage.saveFinalDailyAnalysis();
+		
+		topstockresearchChartPage.saveFinalWeeklyAnalysis();	
 	}
 }

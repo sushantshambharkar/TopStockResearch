@@ -7,7 +7,7 @@ public class myfirstprogram {
 
 		
 		DatabaseConnection dc = new DatabaseConnection ();
-		dc.databaseConnection();
+//		dc.insertDailyData(null, null, null, null);
 		
 		
 	}

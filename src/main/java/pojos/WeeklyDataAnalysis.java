@@ -27,7 +27,7 @@ public class WeeklyDataAnalysis {
 	private Double	PDIWeekly	;
 	private Double	MDIWeekly	;
 	private String  MACDBuyOrSell;
-	private Double  MACDAboveSignal;
+	private int  MACDAboveSignal;
 	private String  RSIBuyOrSell;
 	private String  BBBuyOrSell;
 	private String  ADXBuyOrSell;
@@ -154,10 +154,10 @@ public class WeeklyDataAnalysis {
 	public void setMACDBuyOrSell(String mACDBuyOrSell) {
 		MACDBuyOrSell = mACDBuyOrSell;
 	}
-	public Double getMACDAboveSignal() {
+	public int getMACDAboveSignal() {
 		return MACDAboveSignal;
 	}
-	public void setMACDAboveSignal(Double mACDAboveSignal) {
+	public void setMACDAboveSignal(int mACDAboveSignal) {
 		MACDAboveSignal = mACDAboveSignal;
 	}
 	public String getRSIBuyOrSell() {
