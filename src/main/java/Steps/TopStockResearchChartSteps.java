@@ -46,7 +46,12 @@ public class TopStockResearchChartSteps {
 	
 	public void getValuesFromDailyChart ()
 	{
-		topstockresearchChartPage.getdailychartvalues();
+		try {
+			topstockresearchChartPage.getdailychartvalues();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

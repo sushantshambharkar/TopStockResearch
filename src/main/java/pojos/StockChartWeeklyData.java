@@ -18,6 +18,8 @@ public class StockChartWeeklyData {
 	private String	BBMBWeekly	;
 	private String	ema20Weekly	;
 	private String	ema06Weekly	;
+	private String	ema50Weekly	;
+	private String	ema200Weekly	;
 	private String	RSIWeekly	;
 	private String	MACDWeekly	;
 	private String	MacdSignalWeekly	;
@@ -103,6 +105,18 @@ public class StockChartWeeklyData {
 	}
 	public void setEma06Weekly(String ema06Weekly) {
 		this.ema06Weekly = ema06Weekly;
+	}
+	public String getEma50Weekly() {
+		return ema50Weekly;
+	}
+	public void setEma50Weekly(String ema50Weekly) {
+		this.ema50Weekly = ema50Weekly;
+	}
+	public String getEma200Weekly() {
+		return ema200Weekly;
+	}
+	public void setEma200Weekly(String ema200Weekly) {
+		this.ema200Weekly = ema200Weekly;
 	}
 	public String getRSIWeekly() {
 		return RSIWeekly;

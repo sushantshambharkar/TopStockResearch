@@ -66,6 +66,9 @@ public class TopstockresearchChartPage extends PageObject {
 	@FindBy(xpath = "//*[@id=\"tsrchart\"]/svg/g/g[1]/g[6]/text")
 	WebElementFacade clickonchart;
 
+	@FindBy(id="tsaRnkDivLabel")
+	WebElementFacade stockRanking;
+	
 	public String weeklyMetrics = "WEEKLY  ASHOKLEY     Date:2020-09-11  Open:70.50  High:71.65  Low:64.15  Close:68.15  Volume:152.880M  BBUB:71.27  BBLB:36.78  BBMB:54.03  ema20:58.73  ema6:65.11  RSI:74.03  MACD:6.38  MacdSignal:3.49  ADX:27.91  PDI:31.23  MDI:15.78  ";
 	public String dailyMetrics = "DAILY   ADANIENT     Date:2020-09-11  Open:299.00  High:303.65  Low:292.10  Close:296.00  Volume:9.740M  BBUB:NotinGraph BBLB:210.23  BBMB:270.28  ema20:267.70  ema5:290.76  RSI:66.40  MACD:22.07  MacdSignal:24.99  ADX:57.04  PDI:34.15  MDI:10.98  ";
 
@@ -77,18 +80,26 @@ public class TopstockresearchChartPage extends PageObject {
 		userInput.sendKeys(stockname);
 		Thread.sleep(1000);
 		userInput.sendKeys(Keys.ARROW_DOWN);
+		
 		userInput.sendKeys(Keys.ENTER);
 		userInput.sendKeys(Keys.TAB);
 
 	}
 
-	public void getdailychartvalues() {
+	public void getdailychartvalues() throws InterruptedException {
 
-		String metricvalues = " ", scriptname = "";
+		try {
+			Thread.sleep(15000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String metricvalues = " ", scriptname = " ", scriptcomments =" ";
 
 		ChartLinkinNavBar.click();
 
-		saveButton.sendKeys(Keys.PAGE_DOWN);
+
 
 		try {
 			Thread.sleep(5000);
@@ -107,6 +118,8 @@ public class TopstockresearchChartPage extends PageObject {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 
 		for (int x = 1; x < 75; x++)
 
@@ -126,7 +139,9 @@ public class TopstockresearchChartPage extends PageObject {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 
+			
 			usernavigation.click();
 
 			try {
@@ -164,7 +179,7 @@ public class TopstockresearchChartPage extends PageObject {
 			metricvalues = metricvalues.replace("Macd Signal:", "MacdSignal:");
 			metricvalues = metricvalues.replace("EMA 6", "ema06:");
 			metricvalues = metricvalues.replace("EMA6", "ema06:");
-
+			metricvalues = metricvalues.replace("EMA 200:", "ema200:");
 			if (!metricvalues.contains("BBLB")) {
 				metricvalues = metricvalues.replace("BBMB:", "BBLB:NotinGraph BBMB:");
 			}
@@ -173,22 +188,49 @@ public class TopstockresearchChartPage extends PageObject {
 				metricvalues = metricvalues.replace("BBLB:", "BBUB:NotinGraph BBLB:");
 			}
 
+			if (!metricvalues.contains("ema200:")) {
+			
+				metricvalues = metricvalues.replace("MACD:", "ema200:0.0 MACD:");
+				
+			}
+			userInput.clear();
+			userInput.sendKeys(scriptname.replace(" ", ""));
+			
+			Thread.sleep(2000);
+			userInput.sendKeys(Keys.ARROW_DOWN);
+			
+			userInput.sendKeys(Keys.ENTER);
+			userInput.sendKeys(Keys.TAB);
+		
+			Thread.sleep(5000);
+			
+			scriptcomments = stockRanking.getTextValue();
+			
 			scriptname = StringUtils.rightPad(scriptname, 12, " ");
-			dailyMetrics = "DAILY  " + scriptname + " " + metricvalues;
+			dailyMetrics = "DAILY  " + scriptname + " " + metricvalues + " "+ "scriptcomments:" + scriptcomments;
 			metricvalues = " ";
-			scriptname = "";
+			scriptname = " ";
+			scriptcomments =" ";
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
+			
+			userInput.clear();
 			// dailyMetrics = "DAILY ACC Date:2020-06-02 Open:1282.00 High:1299.30
 			// Low:1272.80 Close:1287.10 Volume:980515.00 BBUB:1307.97 BBLB:1098.14
 			// BBMB:1203.05 ema20:1214.65 EMA06:1266.48 RSI:68.88 MACD:51.84
 			// MacdSignal:44.81 ADX:38.53 PDI:33.14 MDI:9.46 ";
-			// System.out.println(dailyMetrics);
+			 System.out.println(dailyMetrics);
 
 			String WeeklyorDaily = dailyMetrics.substring(0, 7);
 			String StockName = dailyMetrics.substring(7, 20);
 			String TradeDate = dailyMetrics.substring(25, 35);
-			String OpenPriceDaily = dailyMetrics.substring(dailyMetrics.indexOf("Open:") + 5,
-					dailyMetrics.indexOf("High:"));
+			String OpenPriceDaily = dailyMetrics.substring(dailyMetrics.indexOf("Open:") + 5,dailyMetrics.indexOf("High:"));
 			String HighPriceDaily = dailyMetrics.substring(dailyMetrics.indexOf("High:") + 5,
 					dailyMetrics.indexOf("Low:"));
 			String LowPriceDaily = dailyMetrics.substring(dailyMetrics.indexOf("Low:") + 4,
@@ -199,21 +241,18 @@ public class TopstockresearchChartPage extends PageObject {
 					dailyMetrics.indexOf("BBUB:"));
 			String BBUBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBUB:") + 5, dailyMetrics.indexOf("BBLB:"));
 			String BBLBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBLB:") + 5, dailyMetrics.indexOf("BBMB:"));
-			String BBMBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBMB:") + 5,
-					dailyMetrics.indexOf("ema20:"));
-			String ema20Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6,
-					dailyMetrics.indexOf("ema06:"));
-			String ema06Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema06:") + 7,
-					dailyMetrics.indexOf("MACD:"));
-			String MACDDaily = dailyMetrics.substring(dailyMetrics.indexOf("MACD:") + 5,
-					dailyMetrics.indexOf("MacdSignal:"));
-			String MacdSignalDaily = dailyMetrics.substring(dailyMetrics.indexOf("MacdSignal:") + 11,
-					dailyMetrics.indexOf("RSI:"));
+			String BBMBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBMB:") + 5, dailyMetrics.indexOf("ema20:"));
+			String ema20Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6,dailyMetrics.indexOf("ema06:"));
+			String ema06Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema06:") + 7,dailyMetrics.indexOf("ema50:"));
+			String ema50Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema50:") + 6,dailyMetrics.indexOf("ema200:"));
+			String ema200Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema200:") + 7,dailyMetrics.indexOf("MACD:"));
+			String MACDDaily = dailyMetrics.substring(dailyMetrics.indexOf("MACD:") + 5,dailyMetrics.indexOf("MacdSignal:"));
+			String MacdSignalDaily = dailyMetrics.substring(dailyMetrics.indexOf("MacdSignal:") + 11,dailyMetrics.indexOf("RSI:"));
 			String RSIDaily = dailyMetrics.substring(dailyMetrics.indexOf("RSI:") + 4, dailyMetrics.indexOf("ADX:"));
 			String ADXDaily = dailyMetrics.substring(dailyMetrics.indexOf("ADX:") + 4, dailyMetrics.indexOf("PDI:"));
 			String PDIDaily = dailyMetrics.substring(dailyMetrics.indexOf("PDI:") + 4, dailyMetrics.indexOf("MDI:"));
-			String MDIDaily = dailyMetrics.substring(dailyMetrics.indexOf("MDI:") + 4, dailyMetrics.length());
-
+			String MDIDaily = dailyMetrics.substring(dailyMetrics.indexOf("MDI:") + 4, dailyMetrics.indexOf("scriptcomments:"));
+			String ScriptComments = dailyMetrics.substring(dailyMetrics.indexOf("scriptcomments:") + 15, dailyMetrics.length());
 			// System.out.println("DailyorDaily	" + WeeklyorDaily);
 			// System.out.println("StockName	" + StockName);
 			// System.out.println("TradeDate	" + TradeDate);
@@ -249,6 +288,8 @@ public class TopstockresearchChartPage extends PageObject {
 			stockChartDailyData.setBBMBDaily(BBMBDaily);
 			stockChartDailyData.setEma20Daily(ema20Daily);
 			stockChartDailyData.setEma06Daily(ema06Daily);
+			stockChartDailyData.setEma50Daily(ema50Daily);
+			stockChartDailyData.setEma200Daily(ema200Daily);
 			stockChartDailyData.setRSIDaily(RSIDaily);
 			stockChartDailyData.setMACDDaily(MACDDaily);
 			stockChartDailyData.setMacdSignalDaily(MacdSignalDaily);
@@ -256,7 +297,8 @@ public class TopstockresearchChartPage extends PageObject {
 			stockChartDailyData.setPDIDaily(PDIDaily);
 			stockChartDailyData.setMDIDaily(MDIDaily);
 			stockChartDailyData.setADXDaily(ADXDaily);
-
+			stockChartDailyData.setScriptComments(ScriptComments.replace("%", " "));
+			
 			lststoryChartDailyData.add(stockChartDailyData);
 
 		}
@@ -280,6 +322,13 @@ public class TopstockresearchChartPage extends PageObject {
 	public void getweeklychartvalues() {
 
 		String metricvalues = " ", scriptname = "";
+		
+		try {
+			Thread.sleep(15000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		ChartLinkinNavBar.click();
 
@@ -311,6 +360,7 @@ public class TopstockresearchChartPage extends PageObject {
 			myStockdropdown.click();
 
 			scriptname = myStockdropdown.getSelectedVisibleTextValue();
+			
 
 			try {
 				Thread.sleep(5000);
@@ -340,10 +390,11 @@ public class TopstockresearchChartPage extends PageObject {
 			metricvalues = metricvalues.replace("BB MB:", "BBMB:");
 			metricvalues = metricvalues.replace("BB LB:", "BBLB:");
 			metricvalues = metricvalues.replace("Macd Signal:", "MacdSignal:");
-			metricvalues = metricvalues.replace("EMA 6", "ema06:");
-			metricvalues = metricvalues.replace("EMA6", "ema06:");
-			metricvalues = metricvalues.replace("ema 6", "ema06:");
-			metricvalues = metricvalues.replace("ema6", "ema06:");
+			metricvalues = metricvalues.replace("EMA 6", "ema06");
+			metricvalues = metricvalues.replace("EMA6", "ema06");
+			metricvalues = metricvalues.replace("ema 6", "ema06");
+			metricvalues = metricvalues.replace("ema6", "ema06");
+			metricvalues = metricvalues.replace("EMA 200", "EMA200");
 
 			if (!metricvalues.contains("BBLB")) {
 				metricvalues = metricvalues.replace("BBMB:", "BBLB:NotinGraph BBMB:");
@@ -353,11 +404,25 @@ public class TopstockresearchChartPage extends PageObject {
 				metricvalues = metricvalues.replace("BBLB:", "BBUB:NotinGraph BBLB:");
 			}
 
+			
+			if (!metricvalues.contains("EMA200:")) {
+				
+				metricvalues = metricvalues.replace("MACD:", "EMA200:0.0 MACD:");
+				
+			}
+			
+			if (!metricvalues.contains("ema50:")) {
+				
+				metricvalues = metricvalues.replace("EMA200:", "ema50:0.0 EMA200:");
+				
+			}
+		
+			
 			scriptname = StringUtils.rightPad(scriptname, 12, " ");
 
 			weeklyMetrics = "WEEKLY  " + scriptname + " " + metricvalues;
 
-			// System.out.println(weeklyMetrics);
+			System.out.println(weeklyMetrics);
 
 			metricvalues = " ";
 			scriptname = "";
@@ -377,18 +442,14 @@ public class TopstockresearchChartPage extends PageObject {
 					weeklyMetrics.indexOf("BBUB:"));
 			String BBUBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBUB:") + 5,
 					weeklyMetrics.indexOf("BBLB:"));
-			String BBLBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBLB:") + 5,
-					weeklyMetrics.indexOf("BBMB:"));
-			String BBMBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBMB:") + 5,
-					weeklyMetrics.indexOf("ema20:"));
-			String ema20Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema20:") + 6,
-					weeklyMetrics.indexOf("ema06:"));
-			String ema06Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema06:") + 7,
-					weeklyMetrics.indexOf("MACD:"));
-			String MACDWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MACD:") + 5,
-					weeklyMetrics.indexOf("MacdSignal:"));
-			String MacdSignalWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MacdSignal:") + 11,
-					weeklyMetrics.indexOf("RSI:"));
+			String BBLBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBLB:") + 5,	weeklyMetrics.indexOf("BBMB:"));
+			String BBMBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBMB:") + 5,	weeklyMetrics.indexOf("ema20:"));
+			String ema20Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema20:") + 6,weeklyMetrics.indexOf("ema06:"));
+			String ema06Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema06:") +6,weeklyMetrics.indexOf("ema50:"));
+			String ema50Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema50:") + 6,weeklyMetrics.indexOf("EMA200:"));
+			String ema200Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("EMA200:") + 7,weeklyMetrics.indexOf("MACD:"));
+			String MACDWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MACD:") + 5,	weeklyMetrics.indexOf("MacdSignal:"));
+			String MacdSignalWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MacdSignal:") + 11,weeklyMetrics.indexOf("RSI:"));
 			String RSIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("RSI:") + 4,
 					weeklyMetrics.indexOf("ADX:"));
 			String ADXWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ADX:") + 4,
@@ -432,6 +493,8 @@ public class TopstockresearchChartPage extends PageObject {
 			stockChartWeeklyData.setBBMBWeekly(BBMBWeekly);
 			stockChartWeeklyData.setEma20Weekly(ema20Weekly);
 			stockChartWeeklyData.setEma06Weekly(ema06Weekly);
+			stockChartWeeklyData.setEma50Weekly(ema50Weekly);
+			stockChartWeeklyData.setEma200Weekly(ema200Weekly);
 			stockChartWeeklyData.setRSIWeekly(RSIWeekly);
 			stockChartWeeklyData.setMACDWeekly(MACDWeekly);
 			stockChartWeeklyData.setMacdSignalWeekly(MacdSignalWeekly);
@@ -559,6 +622,13 @@ public class TopstockresearchChartPage extends PageObject {
 
 				Cell cell18 = newRow.createCell(18);
 				cell18.setCellValue(lststoryChartWeeklyData.get(rowCount).getMDIWeekly());
+				
+				
+				Cell cell20 = newRow.createCell(19);
+				cell20.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma50Weekly());
+
+				Cell cell21 = newRow.createCell(20);
+				cell21.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma200Weekly());
 
 			}
 
@@ -687,7 +757,16 @@ public class TopstockresearchChartPage extends PageObject {
 
 				Cell cell18 = newRow.createCell(18);
 				cell18.setCellValue(lststoryChartDailyData.get(rowCount).getMDIDaily());
+				
+				Cell cell19 = newRow.createCell(19);
+				cell19.setCellValue(lststoryChartDailyData.get(rowCount).getScriptComments());
+				
+				
+				Cell cell20 = newRow.createCell(20);
+				cell20.setCellValue(lststoryChartDailyData.get(rowCount).getEma50Daily());
 
+				Cell cell21 = newRow.createCell(21);
+				cell21.setCellValue(lststoryChartDailyData.get(rowCount).getEma200Daily());
 			}
 
 			// Close input stream
@@ -764,19 +843,40 @@ public class TopstockresearchChartPage extends PageObject {
 			dailyDataAnalysis.setHighPriceDaily(Double.parseDouble(lstDailyData.get(i).getHighPriceDaily().replace(" ", "")));
 			dailyDataAnalysis.setLowPriceDaily(Double.parseDouble(lstDailyData.get(i).getLowPriceDaily().replace(" ", "")));
 			dailyDataAnalysis.setClosePriceDaily(Double.parseDouble(lstDailyData.get(i).getClosePriceDaily().replace(" ", "")));
-			// dailyDataAnalysis.setVolumeDaily(Double.parseDouble(lstDailyData.get(i).getVolumeDaily().replace("
-			// ", "")));
-			// dailyDataAnalysis.setBBUBDaily(Double.parseDouble(lstDailyData.get(i).getBBUBDaily().replace("
-			// ", "")));
-			// dailyDataAnalysis.setBBLBDaily(Double.parseDouble(lstDailyData.get(i).getBBLBDaily().replace("
-			// ", "")));
+			String VolumeDaily = lstDailyData.get(i).getVolumeDaily();
+			if(!VolumeDaily.contains("M"))
+			{
+				dailyDataAnalysis.setVolumeDaily(Double.parseDouble(lstDailyData.get(i).getVolumeDaily().replace(" ", "")));
+			}
+			else
+			{
+				dailyDataAnalysis.setVolumeDaily(Double.parseDouble(lstDailyData.get(i).getVolumeDaily().replace(" ", "").replace("M", "000000")));
+			}
+			 
+			String BBUBdaily = lstDailyData.get(i).getBBUBDaily();
+			
+			if(!BBUBdaily.contains("NotinGraph"))
+			{
+				dailyDataAnalysis.setBBUBDaily(Double.parseDouble(lstDailyData.get(i).getBBUBDaily().replace(" ", "")));
+			} else  {
+				dailyDataAnalysis.setBBUBDaily(0.0);
+			}
+			
+			String BBLBdaily = lstDailyData.get(i).getBBLBDaily();
+			
+			if(!BBLBdaily.contains("NotinGraph"))
+			{
+				dailyDataAnalysis.setBBLBDaily(Double.parseDouble(lstDailyData.get(i).getBBLBDaily().replace(" ", "")));
+			} else  {
+				dailyDataAnalysis.setBBLBDaily(0.0);
+			}
+				
 			dailyDataAnalysis.setBBMBDaily(Double.parseDouble(lstDailyData.get(i).getBBMBDaily().replace(" ", "")));
 			dailyDataAnalysis.setEma20Daily(Double.parseDouble(lstDailyData.get(i).getEma20Daily().replace(" ", "")));
-			dailyDataAnalysis.setEma06Daily(Double.parseDouble(lstDailyData.get(i).getEma06Daily().replace(" ", "")));
+			dailyDataAnalysis.setEma06Daily(Double.parseDouble(lstDailyData.get(i).getEma06Daily().replace(" ", "").replace(":", "")));
 			dailyDataAnalysis.setRSIDaily(Double.parseDouble(lstDailyData.get(i).getRSIDaily().replace(" ", "")));
 			dailyDataAnalysis.setMACDDaily(Double.parseDouble(lstDailyData.get(i).getMACDDaily().replace(" ", "")));
-			dailyDataAnalysis
-					.setMacdSignalDaily(Double.parseDouble(lstDailyData.get(i).getMacdSignalDaily().replace(" ", "")));
+			dailyDataAnalysis.setMacdSignalDaily(Double.parseDouble(lstDailyData.get(i).getMacdSignalDaily().replace(" ", "")));
 			dailyDataAnalysis.setADXDaily(Double.parseDouble(lstDailyData.get(i).getADXDaily().replace(" ", "")));
 			dailyDataAnalysis.setPDIDaily(Double.parseDouble(lstDailyData.get(i).getPDIDaily().replace(" ", "")));
 			dailyDataAnalysis.setMDIDaily(Double.parseDouble(lstDailyData.get(i).getMDIDaily().replace(" ", "")));
@@ -787,29 +887,37 @@ public class TopstockresearchChartPage extends PageObject {
 			int MACD = 0;
 			int MACDSignal = 0;
 			int MACDMinusSignal = 0;
+			
+			
+					
 
 			ema20 = (int) Double.parseDouble(lstDailyData.get(i).getEma20Daily().replace(" ", ""));
-			ema06 = (int) Double.parseDouble(lstDailyData.get(i).getEma06Daily().replace(" ", ""));
+			ema06 = (int) Double.parseDouble(lstDailyData.get(i).getEma06Daily().replace(" ", "").replace(":", ""));
 			RSI = (int) Double.parseDouble(lstDailyData.get(i).getRSIDaily().replace(" ", ""));
 			MACD = (int) Double.parseDouble(lstDailyData.get(i).getMACDDaily().replace(" ", ""));
 			MACDSignal = (int) Double.parseDouble(lstDailyData.get(i).getMacdSignalDaily().replace(" ", ""));
+			
+
+			MACDMinusSignal = MACD - MACDSignal;
+			
 			dailyDataAnalysis.setMACDAboveSignal(MACDMinusSignal);
+			
 			if (ema20 > ema06) {
 
-				if ((ema20 / ema06) * 100 > 95) {
+				if (((ema06 / ema20) * 100) > 90) {
 					dailyDataAnalysis.setEMABuyOrSell("EMA Cross: Ready to Sell");
 				}
 
-				else {
+				else if (((ema06 / ema20) * 100) < 90) {
 					dailyDataAnalysis.setEMABuyOrSell("EMA Cross: Sell");
 				}
 
-			} else {
-				if ((ema06 / ema20) * 100 > 95) {
+			} else if (ema20 < ema06) {
+				if (((ema20 / ema06) * 100) > 90) {
 					dailyDataAnalysis.setEMABuyOrSell("EMA Cross : Ready to Buy");
 				}
 
-				else {
+				else if (((ema20 / ema06) * 100) <  90){
 					dailyDataAnalysis.setEMABuyOrSell("EMA Cross: Buy");
 				}
 
@@ -820,24 +928,42 @@ public class TopstockresearchChartPage extends PageObject {
 				// // System.out.println(" inside buy loop MACD" + MACD + " " + "MACDSignal" +
 				// MACDSignal );
 
-				dailyDataAnalysis.setMACDBuyOrSell("Buy");
+				dailyDataAnalysis.setMACDBuyOrSell("MACD Buy");
 
 			} else {
 				// // System.out.println("inside sell loop MACD" + MACD + " " + "MACDSignal" +
 				// MACDSignal );
 
-				dailyDataAnalysis.setMACDBuyOrSell("Sell");
+				dailyDataAnalysis.setMACDBuyOrSell("MACD Sell");
 
 			}
 
 			if (RSI > 40) {
 
-				dailyDataAnalysis.setRSIBuyOrSell("Sell");
+				dailyDataAnalysis.setRSIBuyOrSell(" RSI Sell");
 
 			} else {
-				dailyDataAnalysis.setRSIBuyOrSell("Buy");
+				dailyDataAnalysis.setRSIBuyOrSell("RSI Buy");
 			}
 
+			
+			int ADXPlus = (int) Double.parseDouble(lstDailyData.get(i).getPDIDaily().replace(" ", ""));
+			int ADXMinus = (int) Double.parseDouble(lstDailyData.get(i).getMDIDaily().replace(" ", ""));
+			
+			if (ADXPlus > ADXMinus ) {
+				dailyDataAnalysis.setADXBuyOrSell("ADX Buy");
+			} else 
+			{
+				dailyDataAnalysis.setADXBuyOrSell("ADX Sell");
+			}
+			
+			dailyDataAnalysis.setScriptComments(lstDailyData.get(i).getScriptComments());
+			dailyDataAnalysis.setEma50Daily(Double.parseDouble(lstDailyData.get(i).getEma50Daily()));
+			dailyDataAnalysis.setEma200Daily(Double.parseDouble(lstDailyData.get(i).getEma200Daily()));
+			
+			
+			System.out.println("before db insert ScriptComments" + lstDailyData.get(i).getScriptComments());
+			
 			lstDailyDataFinal.add(dailyDataAnalysis);
 
 			DatabaseConnection dc = new DatabaseConnection();
@@ -850,14 +976,16 @@ public class TopstockresearchChartPage extends PageObject {
 						lstDailyDataFinal.get(i).getHighPriceDaily(), lstDailyDataFinal.get(i).getLowPriceDaily(),
 						lstDailyDataFinal.get(i).getClosePriceDaily(), lstDailyDataFinal.get(i).getVolumeDaily(),
 						lstDailyDataFinal.get(i).getBBUBDaily(), lstDailyDataFinal.get(i).getBBLBDaily(),
-						lstDailyDataFinal.get(i).getBBMBDaily(), lstDailyDataFinal.get(i).getEma20Daily(),
-						lstDailyDataFinal.get(i).getEma06Daily(), lstDailyDataFinal.get(i).getRSIDaily(),
+						lstDailyDataFinal.get(i).getBBMBDaily(),lstDailyDataFinal.get(i).getEma20Daily(),lstDailyDataFinal.get(i).getEma06Daily(), 
+						lstDailyDataFinal.get(i).getRSIDaily(),
 						lstDailyDataFinal.get(i).getMACDDaily(), lstDailyDataFinal.get(i).getMacdSignalDaily(),
 						lstDailyDataFinal.get(i).getADXDaily(), lstDailyDataFinal.get(i).getPDIDaily(),
 						lstDailyDataFinal.get(i).getMDIDaily(), lstDailyDataFinal.get(i).getMACDBuyOrSell(),
 						lstDailyDataFinal.get(i).getRSIBuyOrSell(), lstDailyDataFinal.get(i).getBBBuyOrSell(),
 						lstDailyDataFinal.get(i).getADXBuyOrSell(), lstDailyDataFinal.get(i).getEMABuyOrSell(),
-						lstDailyDataFinal.get(i).getMACDAboveSignal()
+						lstDailyDataFinal.get(i).getMACDAboveSignal(), lstDailyDataFinal.get(i).getScriptComments(),
+						lstDailyDataFinal.get(i).getEma50Daily(),
+						lstDailyDataFinal.get(i).getEma200Daily()
 
 				);
 			} catch (Exception e) {
@@ -891,15 +1019,39 @@ public class TopstockresearchChartPage extends PageObject {
 			weeklyDataAnalysis.setHighPriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getHighPriceWeekly().replace(" ", "")));
 			weeklyDataAnalysis.setLowPriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getLowPriceWeekly().replace(" ", "")));
 			weeklyDataAnalysis.setClosePriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getClosePriceWeekly().replace(" ", "")));
-			// weeklyDataAnalysis.setVolumeWeekly(Double.parseDouble(lstWeeklyData.get(i).getVolumeWeekly().replace("
-			// ", "")));
-			// weeklyDataAnalysis.setBBUBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBUBWeekly().replace("
-			// ", "")));
-			// weeklyDataAnalysis.setBBLBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBLBWeekly().replace("
-			// ", "")));
+				
+			String VolumeWeekly = lstWeeklyData.get(i).getVolumeWeekly();
+			
+			if(!VolumeWeekly.contains("M"))
+			{
+				weeklyDataAnalysis.setVolumeWeekly(Double.parseDouble(lstWeeklyData.get(i).getVolumeWeekly().replace(" ", "")));
+			}
+			else
+			{
+				weeklyDataAnalysis.setVolumeWeekly(Double.parseDouble(lstWeeklyData.get(i).getVolumeWeekly().replace(" ", "").replace("M", "000000")));
+			}
+			 
+			String BBUBWeekly = lstWeeklyData.get(i).getBBUBWeekly();
+			
+			if(!BBUBWeekly.contains("NotinGraph"))
+			{
+				 weeklyDataAnalysis.setBBUBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBUBWeekly().replace(" ", "")));
+			}else  { 	
+				weeklyDataAnalysis.setBBUBWeekly(0.0);
+			}
+			
+			String BBLBWeekly = lstWeeklyData.get(i).getBBLBWeekly();
+			
+			if(!BBLBWeekly.contains("NotinGraph"))
+			{
+				 weeklyDataAnalysis.setBBLBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBLBWeekly().replace(" ", "")));
+			} else  {
+				weeklyDataAnalysis.setBBLBWeekly(0.0);
+			}
+			
 			weeklyDataAnalysis.setBBMBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBMBWeekly().replace(" ", "")));
 			weeklyDataAnalysis.setEma20Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma20Weekly().replace(" ", "")));
-			weeklyDataAnalysis.setEma06Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma06Weekly().replace(" ", "")));
+			weeklyDataAnalysis.setEma06Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma06Weekly().replace(" ", "").replace(":", "")));
 			weeklyDataAnalysis.setRSIWeekly(Double.parseDouble(lstWeeklyData.get(i).getRSIWeekly().replace(" ", "")));
 			weeklyDataAnalysis.setMACDWeekly(Double.parseDouble(lstWeeklyData.get(i).getMACDWeekly()));
 			weeklyDataAnalysis.setMacdSignalWeekly(Double.parseDouble(lstWeeklyData.get(i).getMacdSignalWeekly().replace(" ", "")));
@@ -919,7 +1071,10 @@ public class TopstockresearchChartPage extends PageObject {
 			RSI = (int) Double.parseDouble(lstWeeklyData.get(i).getRSIWeekly().replace(" ", ""));
 			MACD = (int) Double.parseDouble(lstWeeklyData.get(i).getMACDWeekly().replace(" ", ""));
 			MACDSignal = (int) Double.parseDouble(lstWeeklyData.get(i).getMacdSignalWeekly().replace(" ", ""));
+			
+			MACDAboveSignal = MACD - MACDSignal;
 			weeklyDataAnalysis.setMACDAboveSignal(MACDAboveSignal );
+			
 			if (ema20 > ema06) {
 
 				if ((ema20 / ema06) * 100 > 95) {
@@ -962,6 +1117,20 @@ public class TopstockresearchChartPage extends PageObject {
 				weeklyDataAnalysis.setRSIBuyOrSell("Buy");
 			}
 
+			
+			int ADXPlus = (int) Double.parseDouble(lstWeeklyData.get(i).getPDIWeekly().replace(" ", ""));
+			int ADXMinus = (int) Double.parseDouble(lstWeeklyData.get(i).getMDIWeekly().replace(" ", ""));
+			
+			if (ADXPlus > ADXMinus ) {
+				weeklyDataAnalysis.setADXBuyOrSell("ADX Buy");
+			} else 
+			{
+				weeklyDataAnalysis.setADXBuyOrSell("ADX Sell");
+			}
+			
+		weeklyDataAnalysis.setEma50Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma50Weekly()));
+		weeklyDataAnalysis.setEma200Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma200Weekly()));
+			
 			lstWeeklyDataFinal.add(weeklyDataAnalysis);
 
 			DatabaseConnection dc = new DatabaseConnection();
@@ -974,14 +1143,13 @@ public class TopstockresearchChartPage extends PageObject {
 						lstWeeklyDataFinal.get(i).getHighPriceWeekly(), lstWeeklyDataFinal.get(i).getLowPriceWeekly(),
 						lstWeeklyDataFinal.get(i).getClosePriceWeekly(), lstWeeklyDataFinal.get(i).getVolumeWeekly(),
 						lstWeeklyDataFinal.get(i).getBBUBWeekly(), lstWeeklyDataFinal.get(i).getBBLBWeekly(),
-						lstWeeklyDataFinal.get(i).getBBMBWeekly(), lstWeeklyDataFinal.get(i).getEma20Weekly(),
-						lstWeeklyDataFinal.get(i).getEma06Weekly(), lstWeeklyDataFinal.get(i).getRSIWeekly(),
-						lstWeeklyDataFinal.get(i).getMACDWeekly(), lstWeeklyDataFinal.get(i).getMacdSignalWeekly(),
+						lstWeeklyDataFinal.get(i).getBBMBWeekly(), lstWeeklyDataFinal.get(i).getEma20Weekly(),	lstWeeklyDataFinal.get(i).getEma06Weekly(), 
+						lstWeeklyDataFinal.get(i).getRSIWeekly(),lstWeeklyDataFinal.get(i).getMACDWeekly(), lstWeeklyDataFinal.get(i).getMacdSignalWeekly(),
 						lstWeeklyDataFinal.get(i).getADXWeekly(), lstWeeklyDataFinal.get(i).getPDIWeekly(),
 						lstWeeklyDataFinal.get(i).getMDIWeekly(), lstWeeklyDataFinal.get(i).getMACDBuyOrSell(),
 						lstWeeklyDataFinal.get(i).getRSIBuyOrSell(), lstWeeklyDataFinal.get(i).getBBBuyOrSell(),
 						lstWeeklyDataFinal.get(i).getADXBuyOrSell(), lstWeeklyDataFinal.get(i).getEMABuyOrSell(),
-						lstWeeklyDataFinal.get(i).getMACDAboveSignal()
+						lstWeeklyDataFinal.get(i).getMACDAboveSignal(),lstWeeklyDataFinal.get(i).getEma50Weekly(),	lstWeeklyDataFinal.get(i).getEma200Weekly()
 
 				);
 			} catch (Exception e) {
@@ -1071,16 +1239,16 @@ public class TopstockresearchChartPage extends PageObject {
 				cell6.setCellValue(lstDailyDataFinal.get(rowCount).getClosePriceDaily());
 
 				Cell cell7 = newRow.createCell(7);
-				cell7.setCellValue("vol will come here");
+				cell7.setCellValue(lstDailyDataFinal.get(rowCount).getVolumeDaily());
 
 				Cell cell8 = newRow.createCell(8);
-				cell8.setCellValue("vol will come here");
+				cell8.setCellValue(lstDailyDataFinal.get(rowCount).getBBUBDaily());
 
 				Cell cell9 = newRow.createCell(9);
-				cell9.setCellValue("vol will come here");
+				cell9.setCellValue(lstDailyDataFinal.get(rowCount).getBBLBDaily());
 
 				Cell cell10 = newRow.createCell(10);
-				cell10.setCellValue("vol will come here");
+				cell10.setCellValue(lstDailyDataFinal.get(rowCount).getBBMBDaily());
 
 				Cell cell11 = newRow.createCell(11);
 				cell11.setCellValue(lstDailyDataFinal.get(rowCount).getEma20Daily());
@@ -1120,6 +1288,9 @@ public class TopstockresearchChartPage extends PageObject {
 
 				Cell cell23 = newRow.createCell(23);
 				cell23.setCellValue(lstDailyDataFinal.get(rowCount).getMACDAboveSignal());
+				
+				Cell cell24 = newRow.createCell(24);
+				cell24.setCellValue(lstDailyDataFinal.get(rowCount).getScriptComments());
 
 			}
 
@@ -1213,16 +1384,16 @@ public class TopstockresearchChartPage extends PageObject {
 				cell6.setCellValue(lstWeeklyDataFinal.get(rowCount).getClosePriceWeekly());
 
 				Cell cell7 = newRow.createCell(7);
-				cell7.setCellValue("vol will come here");
+				cell7.setCellValue(lstWeeklyDataFinal.get(rowCount).getVolumeWeekly());
 
 				Cell cell8 = newRow.createCell(8);
-				cell8.setCellValue("vol will come here");
+				cell8.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBUBWeekly());
 
 				Cell cell9 = newRow.createCell(9);
-				cell9.setCellValue("vol will come here");
+				cell9.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBLBWeekly());
 
 				Cell cell10 = newRow.createCell(10);
-				cell10.setCellValue("vol will come here");
+				cell10.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBMBWeekly());
 
 				Cell cell11 = newRow.createCell(11);
 				cell11.setCellValue(lstWeeklyDataFinal.get(rowCount).getEma20Weekly());

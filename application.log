@@ -1,4 +1,4 @@
-2020-09-19 20:43:57,831  INFO [main] ConsoleLoggingListener:220 - [36m
+2020-09-22 20:50:16,543  INFO [main] ConsoleLoggingListener:220 - [36m
 
 -------------------------------------------------------------------------------------
      _______. _______ .______       _______ .__   __.  __  .___________.____    ____ 
@@ -15,8 +15,8 @@
  Learn Serenity BDD online at http://serenity-dojo.com                               
 -------------------------------------------------------------------------------------
 [0m
-2020-09-19 20:43:57,852  INFO [main] ConsoleLoggingListener:249 - Test Suite Started: get User selected values
-2020-09-19 20:43:58,024  INFO [main] ConsoleLoggingListener:266 - 
+2020-09-22 20:50:16,553  INFO [main] ConsoleLoggingListener:249 - Test Suite Started: get User selected values
+2020-09-22 20:50:16,705  INFO [main] ConsoleLoggingListener:266 - 
  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
 |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
@@ -26,8 +26,7 @@
 
 TEST STARTED: get values from daily chart
 -------------------------------------------------------------------(get-user-selected-values;get-values-from-daily-chart)
-2020-09-19 20:44:02,942  WARN [main] GeckoServicePool:77 - Remote driver creation failed (permission denied), falling back on default driver creation
-2020-09-19 21:52:35,294  INFO [main] ConsoleLoggingListener:393 - 
+2020-09-22 22:09:51,164  INFO [main] ConsoleLoggingListener:393 - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
  (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
@@ -37,7 +36,7 @@ TEST STARTED: get values from daily chart
 
 TEST PASSED: get values from daily chart
 ----------------------------------------------------------------------------
-2020-09-19 21:52:35,295  INFO [main] ConsoleLoggingListener:393 - 
+2020-09-22 22:09:51,175  INFO [main] ConsoleLoggingListener:393 - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
  (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |

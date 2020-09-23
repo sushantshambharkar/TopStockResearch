@@ -16,12 +16,15 @@ public class StockChartDailyData {
 	private String	BBMBDaily	;
 	private String	ema20Daily	;
 	private String	ema06Daily	;
+	private String	ema50Daily	;
+	private String	ema200Daily	;
 	private String	RSIDaily	;
 	private String	MACDDaily	;
 	private String	MacdSignalDaily	;
 	private String	ADXDaily	;
 	private String	PDIDaily	;
 	private String	MDIDaily	;
+	private String ScriptComments ;
 		
 	public String getWeeklyorDaily() {
 		return WeeklyorDaily;
@@ -101,6 +104,18 @@ public class StockChartDailyData {
 	public void setEma06Daily(String ema06Daily) {
 		this.ema06Daily = ema06Daily;
 	}
+	public String getEma50Daily() {
+		return ema50Daily;
+	}
+	public void setEma50Daily(String ema50Daily) {
+		this.ema50Daily = ema50Daily;
+	}
+	public String getEma200Daily() {
+		return ema200Daily;
+	}
+	public void setEma200Daily(String ema200Daily) {
+		this.ema200Daily = ema200Daily;
+	}
 	public String getRSIDaily() {
 		return RSIDaily;
 	}
@@ -136,6 +151,12 @@ public class StockChartDailyData {
 	}
 	public void setMDIDaily(String mDIDaily) {
 		MDIDaily = mDIDaily;
+	}
+	public String getScriptComments() {
+		return ScriptComments;
+	}
+	public void setScriptComments(String scriptComments) {
+		ScriptComments = scriptComments;
 	}
 
 }

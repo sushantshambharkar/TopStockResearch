@@ -30,6 +30,9 @@ public class DailyDataAnalysis {
 	private String  BBBuyOrSell;
 	private String  ADXBuyOrSell;
 	private String  EMABuyOrSell;
+	private String ScriptComments ;
+	private Double	ema50Daily	;
+	private Double	ema200Daily	;
 	
 	
 	
@@ -185,4 +188,22 @@ public class DailyDataAnalysis {
 		EMABuyOrSell = eMABuyOrSell;
 	}
 
+	public String getScriptComments() {
+		return ScriptComments;
+	}
+	public void setScriptComments(String scriptComments) {
+		ScriptComments = scriptComments;
+	}
+	public Double getEma50Daily() {
+		return ema50Daily;
+	}
+	public void setEma50Daily(double d) {
+		this.ema50Daily = d;
+	}
+	public Double getEma200Daily() {
+		return ema200Daily;
+	}
+	public void setEma200Daily(double d) {
+		this.ema200Daily = d;
+	}
 }

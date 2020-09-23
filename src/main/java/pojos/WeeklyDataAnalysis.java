@@ -32,6 +32,8 @@ public class WeeklyDataAnalysis {
 	private String  BBBuyOrSell;
 	private String  ADXBuyOrSell;
 	private String  EMABuyOrSell;
+	private Double	ema50Weekly	;
+	private Double	ema200Weekly	;
 	
 	
 	public String getWeeklyorDaily() {
@@ -112,6 +114,20 @@ public class WeeklyDataAnalysis {
 	public void setEma06Weekly(Double ema06Weekly) {
 		this.ema06Weekly = ema06Weekly;
 	}
+	
+	public Double getEma50Weekly() {
+		return ema50Weekly;
+	}
+	public void setEma50Weekly(Double ema50Weekly) {
+		this.ema50Weekly = ema50Weekly;
+	}
+	public Double getEma200Weekly() {
+		return ema200Weekly;
+	}
+	public void setEma200Weekly(Double ema200Weekly) {
+		this.ema200Weekly = ema200Weekly;
+	}
+	
 	public Double getRSIWeekly() {
 		return RSIWeekly;
 	}
@@ -184,6 +200,7 @@ public class WeeklyDataAnalysis {
 	public void setEMABuyOrSell(String eMABuyOrSell) {
 		EMABuyOrSell = eMABuyOrSell;
 	}
+
 
 	
 }
