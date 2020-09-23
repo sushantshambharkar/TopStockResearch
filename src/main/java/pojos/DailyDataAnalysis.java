@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class DailyDataAnalysis {
 	
-
 	private String	WeeklyorDaily	;
 	private String	StockName	;
 	private Date	TradeDate	;
