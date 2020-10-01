@@ -89,7 +89,7 @@ public class DatabaseConnection {
 					+ ema200Daily  	
 					+ " )";
 
-			System.out.println("query  " + query);
+	//		System.out.println("query  " + query);
 
 			PreparedStatement pst = conn.prepareStatement(query);
 			
@@ -204,7 +204,7 @@ public class DatabaseConnection {
 					+ MACDBuyOrSell + "'" + "," + "'" + RSIBuyOrSell + "'" + "," + "'" + BBBuyOrSell + "'" + "," + "'"
 					+ ADXBuyOrSell + "'" + "," + "'" + EMABuyOrSell + "'" + "," + MACDAboveSignal +  "," + + ema50Weekly + "," + ema200Weekly +" )";
 
-			System.out.println("Weekly query  " + query);
+//			System.out.println("Weekly query  " + query);
 
 			PreparedStatement pst = conn.prepareStatement(query);
 
