@@ -1,7 +1,6 @@
 package pages;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import net.serenitybdd.core.pages.PageObject;
 
@@ -13,7 +12,10 @@ public ArrayList<String> fnolist = new ArrayList<String>();
 public  ArrayList<String>   CreateFNOListshare()
 {
 			
-		fnolist.add("Adani Enterprises Ltd.");
+		fnolist.add("NIFTY - S&P CNX NIFTY - INDEX - INDIA");
+		fnolist.add("BANKNIFTY - BANK NIFTY - INDEX - INDIA");
+		
+		
 //		fnolist.add("Adani Ports & Special Economic Zone Ltd.");
 //		fnolist.add("Apollo Hospitals Enterprises Ltd.");
 //		fnolist.add("Aurobindo Pharma Ltd.");

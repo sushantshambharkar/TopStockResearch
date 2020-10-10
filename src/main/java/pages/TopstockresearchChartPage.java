@@ -3,13 +3,9 @@ package pages;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -25,9 +21,6 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import pojos.StockChartWeeklyData;
-import pojos.WeeklyDataAnalysis;
-import util.DatabaseConnection;
-import pojos.DailyDataAnalysis;
 import pojos.StockChartDailyData;
 
 @DefaultUrl("https://my.topstockresearch.com/")
@@ -72,8 +65,8 @@ public class TopstockresearchChartPage extends PageObject {
 	public String weeklyMetrics = "WEEKLY  ASHOKLEY     Date:2020-09-11  Open:70.50  High:71.65  Low:64.15  Close:68.15  Volume:152.880M  BBUB:71.27  BBLB:36.78  BBMB:54.03  ema20:58.73  ema6:65.11  RSI:74.03  MACD:6.38  MacdSignal:3.49  ADX:27.91  PDI:31.23  MDI:15.78  ";
 	public String dailyMetrics = "DAILY   ADANIENT     Date:2020-09-11  Open:299.00  High:303.65  Low:292.10  Close:296.00  Volume:9.740M  BBUB:NotinGraph BBLB:210.23  BBMB:270.28  ema20:267.70  ema5:290.76  RSI:66.40  MACD:22.07  MacdSignal:24.99  ADX:57.04  PDI:34.15  MDI:10.98  ";
 
-	public List<StockChartWeeklyData> lststoryChartWeeklyData = new ArrayList<StockChartWeeklyData>();
-	public List<StockChartDailyData> lststoryChartDailyData = new ArrayList<StockChartDailyData>();
+	public static List<StockChartWeeklyData> lststoryChartWeeklyData = new ArrayList<StockChartWeeklyData>();
+	public static List<StockChartDailyData> lststoryChartDailyData = new ArrayList<StockChartDailyData>();
 
 	public void getUserSelectedDailyValues(String stockname) throws InterruptedException {
 		userInput.clear();
@@ -121,7 +114,7 @@ public class TopstockresearchChartPage extends PageObject {
 		
 		
 
-		for (int x = 1; x < 75; x++)
+		for (int x = 1; x <= 130; x++)
 
 		{
 
@@ -349,7 +342,7 @@ public class TopstockresearchChartPage extends PageObject {
 			e.printStackTrace();
 		}
 
-		for (int x = 1; x < 75; x++)
+		for (int x = 1; x < 130; x++)
 
 		{
 
@@ -525,7 +518,7 @@ public class TopstockresearchChartPage extends PageObject {
 
 	public void saveweeklychartvalues() {
 
-		String fileName = "WeeklyData.xlsx";
+//		String fileName = "WeeklyData.xlsx";
 		File file = new File("c://Selenium//WeeklyData.xlsx");
 
 		Workbook weeklyworkBook = null;
@@ -548,7 +541,7 @@ public class TopstockresearchChartPage extends PageObject {
 
 		// Get the current count of rows in excel file
 
-		int rCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+//		int rCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 
 		// Get the first row from the sheet
 
@@ -683,7 +676,7 @@ public class TopstockresearchChartPage extends PageObject {
 
 		// Get the current count of rows in excel file
 
-		int rCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+//		int rCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 
 		// Get the first row from the sheet
 
@@ -811,673 +804,18 @@ public class TopstockresearchChartPage extends PageObject {
 		this.dailyMetrics = dailyMetrics;
 	}
 
-	public List<StockChartDailyData> getlistdailyData() {
+	public static List<StockChartDailyData> getlistdailyData() {
 
 	//	// System.out.println("returning " + lststoryChartDailyData.size() + "Records");
 
 		return lststoryChartDailyData;
 	}
 
-	public List<StockChartWeeklyData> getlistWeeklyData() {
+	public static List<StockChartWeeklyData> getlistWeeklyData() {
 	//	// System.out.println("returning " + lststoryChartWeeklyData.size() + "Records");
 		return lststoryChartWeeklyData;
 	}
 
-	public List<StockChartDailyData> lstDailyData = lststoryChartDailyData;
-	public List<StockChartWeeklyData> lstWeeklyData = lststoryChartWeeklyData;
-
-	public SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
-
-	public List<DailyDataAnalysis> lstDailyDataFinal = new ArrayList<DailyDataAnalysis>();
-	public List<WeeklyDataAnalysis> lstWeeklyDataFinal = new ArrayList<WeeklyDataAnalysis>();
-
-	public void AnalyzeData() throws ParseException {
-
-		for (int i = 0; i < lstDailyData.size(); i++) {
-			DailyDataAnalysis dailyDataAnalysis = new DailyDataAnalysis();
-
-			dailyDataAnalysis.setWeeklyorDaily(lstDailyData.get(i).getWeeklyorDaily().replace(" ", ""));
-			dailyDataAnalysis.setStockName(lstDailyData.get(i).getStockName().replace(" ", ""));
-			dailyDataAnalysis.setTradeDate(formatter2.parse(lstDailyData.get(i).getTradeDate()));
-			dailyDataAnalysis.setOpenPriceDaily(Double.parseDouble(lstDailyData.get(i).getOpenPriceDaily().replace(" ", "")));
-			dailyDataAnalysis.setHighPriceDaily(Double.parseDouble(lstDailyData.get(i).getHighPriceDaily().replace(" ", "")));
-			dailyDataAnalysis.setLowPriceDaily(Double.parseDouble(lstDailyData.get(i).getLowPriceDaily().replace(" ", "")));
-			dailyDataAnalysis.setClosePriceDaily(Double.parseDouble(lstDailyData.get(i).getClosePriceDaily().replace(" ", "")));
-			String VolumeDaily = lstDailyData.get(i).getVolumeDaily();
-			if(!VolumeDaily.contains("M"))
-			{
-				dailyDataAnalysis.setVolumeDaily(Double.parseDouble(lstDailyData.get(i).getVolumeDaily().replace(" ", "")));
-			}
-			else
-			{
-				dailyDataAnalysis.setVolumeDaily(Double.parseDouble(lstDailyData.get(i).getVolumeDaily().replace(" ", "").replace("M", "000000")));
-			}
-			 
-			String BBUBdaily = lstDailyData.get(i).getBBUBDaily();
-			
-			if(!BBUBdaily.contains("NotinGraph"))
-			{
-				dailyDataAnalysis.setBBUBDaily(Double.parseDouble(lstDailyData.get(i).getBBUBDaily().replace(" ", "")));
-			} else  {
-				dailyDataAnalysis.setBBUBDaily(0.0);
-			}
-			
-			String BBLBdaily = lstDailyData.get(i).getBBLBDaily();
-			
-			if(!BBLBdaily.contains("NotinGraph"))
-			{
-				dailyDataAnalysis.setBBLBDaily(Double.parseDouble(lstDailyData.get(i).getBBLBDaily().replace(" ", "")));
-			} else  {
-				dailyDataAnalysis.setBBLBDaily(0.0);
-			}
-				
-			dailyDataAnalysis.setBBMBDaily(Double.parseDouble(lstDailyData.get(i).getBBMBDaily().replace(" ", "")));
-			dailyDataAnalysis.setEma20Daily(Double.parseDouble(lstDailyData.get(i).getEma20Daily().replace(" ", "")));
-			dailyDataAnalysis.setEma06Daily(Double.parseDouble(lstDailyData.get(i).getEma06Daily().replace(" ", "").replace(":", "")));
-			dailyDataAnalysis.setRSIDaily(Double.parseDouble(lstDailyData.get(i).getRSIDaily().replace(" ", "")));
-			dailyDataAnalysis.setMACDDaily(Double.parseDouble(lstDailyData.get(i).getMACDDaily().replace(" ", "")));
-			dailyDataAnalysis.setMacdSignalDaily(Double.parseDouble(lstDailyData.get(i).getMacdSignalDaily().replace(" ", "")));
-			dailyDataAnalysis.setADXDaily(Double.parseDouble(lstDailyData.get(i).getADXDaily().replace(" ", "")));
-			dailyDataAnalysis.setPDIDaily(Double.parseDouble(lstDailyData.get(i).getPDIDaily().replace(" ", "")));
-			dailyDataAnalysis.setMDIDaily(Double.parseDouble(lstDailyData.get(i).getMDIDaily().replace(" ", "")));
-
-			int ema20 = 0;
-			int ema06 = 0;
-			int RSI = 0;
-			int MACD = 0;
-			int MACDSignal = 0;
-			int MACDMinusSignal = 0;
-			
-			
-					
-
-			ema20 = (int) Double.parseDouble(lstDailyData.get(i).getEma20Daily().replace(" ", ""));
-			ema06 = (int) Double.parseDouble(lstDailyData.get(i).getEma06Daily().replace(" ", "").replace(":", ""));
-			RSI = (int) Double.parseDouble(lstDailyData.get(i).getRSIDaily().replace(" ", ""));
-			MACD = (int) Double.parseDouble(lstDailyData.get(i).getMACDDaily().replace(" ", ""));
-			MACDSignal = (int) Double.parseDouble(lstDailyData.get(i).getMacdSignalDaily().replace(" ", ""));
-			
-
-			MACDMinusSignal = MACD - MACDSignal;
-			
-			dailyDataAnalysis.setMACDAboveSignal(MACDMinusSignal);
-			
-			if (ema20 > ema06) {
-
-				if (((ema06 / ema20) * 100) > 90) {
-					dailyDataAnalysis.setEMABuyOrSell("EMA Cross: Ready to Sell");
-				}
-
-				else if (((ema06 / ema20) * 100) < 90) {
-					dailyDataAnalysis.setEMABuyOrSell("EMA Cross: Sell");
-				}
-
-			} else if (ema20 < ema06) {
-				if (((ema20 / ema06) * 100) > 90) {
-					dailyDataAnalysis.setEMABuyOrSell("EMA Cross : Ready to Buy");
-				}
-
-				else if (((ema20 / ema06) * 100) <  90){
-					dailyDataAnalysis.setEMABuyOrSell("EMA Cross: Buy");
-				}
-
-			}
-
-			if (MACD > MACDSignal) {
-
-				// // System.out.println(" inside buy loop MACD" + MACD + " " + "MACDSignal" +
-				// MACDSignal );
-
-				dailyDataAnalysis.setMACDBuyOrSell("MACD Buy");
-
-			} else {
-				// // System.out.println("inside sell loop MACD" + MACD + " " + "MACDSignal" +
-				// MACDSignal );
-
-				dailyDataAnalysis.setMACDBuyOrSell("MACD Sell");
-
-			}
-
-			if (RSI > 40) {
-
-				dailyDataAnalysis.setRSIBuyOrSell(" RSI Sell");
-
-			} else {
-				dailyDataAnalysis.setRSIBuyOrSell("RSI Buy");
-			}
-
-			
-			int ADXPlus = (int) Double.parseDouble(lstDailyData.get(i).getPDIDaily().replace(" ", ""));
-			int ADXMinus = (int) Double.parseDouble(lstDailyData.get(i).getMDIDaily().replace(" ", ""));
-			
-			if (ADXPlus > ADXMinus ) {
-				dailyDataAnalysis.setADXBuyOrSell("ADX Buy");
-			} else 
-			{
-				dailyDataAnalysis.setADXBuyOrSell("ADX Sell");
-			}
-			
-			dailyDataAnalysis.setScriptComments(lstDailyData.get(i).getScriptComments());
-			dailyDataAnalysis.setEma50Daily(Double.parseDouble(lstDailyData.get(i).getEma50Daily()));
-			dailyDataAnalysis.setEma200Daily(Double.parseDouble(lstDailyData.get(i).getEma200Daily()));
-			
-			
-			System.out.println("before db insert ScriptComments" + lstDailyData.get(i).getScriptComments());
-			
-			lstDailyDataFinal.add(dailyDataAnalysis);
-
-			DatabaseConnection dc = new DatabaseConnection();
-
-			try {
-				dc.insertDailyData(
-
-						lstDailyDataFinal.get(i).getWeeklyorDaily(), lstDailyDataFinal.get(i).getStockName(),
-						lstDailyDataFinal.get(i).getTradeDate(), lstDailyDataFinal.get(i).getOpenPriceDaily(),
-						lstDailyDataFinal.get(i).getHighPriceDaily(), lstDailyDataFinal.get(i).getLowPriceDaily(),
-						lstDailyDataFinal.get(i).getClosePriceDaily(), lstDailyDataFinal.get(i).getVolumeDaily(),
-						lstDailyDataFinal.get(i).getBBUBDaily(), lstDailyDataFinal.get(i).getBBLBDaily(),
-						lstDailyDataFinal.get(i).getBBMBDaily(),lstDailyDataFinal.get(i).getEma20Daily(),lstDailyDataFinal.get(i).getEma06Daily(), 
-						lstDailyDataFinal.get(i).getRSIDaily(),
-						lstDailyDataFinal.get(i).getMACDDaily(), lstDailyDataFinal.get(i).getMacdSignalDaily(),
-						lstDailyDataFinal.get(i).getADXDaily(), lstDailyDataFinal.get(i).getPDIDaily(),
-						lstDailyDataFinal.get(i).getMDIDaily(), lstDailyDataFinal.get(i).getMACDBuyOrSell(),
-						lstDailyDataFinal.get(i).getRSIBuyOrSell(), lstDailyDataFinal.get(i).getBBBuyOrSell(),
-						lstDailyDataFinal.get(i).getADXBuyOrSell(), lstDailyDataFinal.get(i).getEMABuyOrSell(),
-						lstDailyDataFinal.get(i).getMACDAboveSignal(), lstDailyDataFinal.get(i).getScriptComments(),
-						lstDailyDataFinal.get(i).getEma50Daily(),
-						lstDailyDataFinal.get(i).getEma200Daily()
-
-				);
-			} catch (Exception e) {
-				// System.out.println("Daily Analysis " + lstDailyDataFinal.get(i).getStockName() 
-//						+ " Trade Date :  "+ lstDailyDataFinal.get(i).getTradeDate()
-//						+ " MACD Buy or Sell : "+ lstDailyDataFinal.get(i).getMACDBuyOrSell() 
-//						+ " MACD Daily : "	+ lstDailyDataFinal.get(i).getMACDDaily() 
-//						+ " MACD Signal : " + lstDailyDataFinal.get(i).getMacdSignalDaily());
-			
-			} finally
-			{
-				// System.out.println("Daily Analysis " + lstDailyDataFinal.get(i).getStockName() 
-//						+ " Trade Date :  "+ lstDailyDataFinal.get(i).getTradeDate()
-//						+ " MACD Buy or Sell : "+ lstDailyDataFinal.get(i).getMACDBuyOrSell() 
-//						+ " MACD Daily : "	+ lstDailyDataFinal.get(i).getMACDDaily() 
-//						+ " MACD Signal : " + lstDailyDataFinal.get(i).getMacdSignalDaily());
-			}
-
-
-		}
-
-		for (int i = 0; i < lstWeeklyData.size(); i++) {
-			
-			
-			WeeklyDataAnalysis weeklyDataAnalysis = new WeeklyDataAnalysis();
-
-			weeklyDataAnalysis.setWeeklyorDaily(lstWeeklyData.get(i).getWeeklyorDaily().replace(" ", ""));
-			weeklyDataAnalysis.setStockName(lstWeeklyData.get(i).getStockName().replace(" ", ""));
-			weeklyDataAnalysis.setWeekDate(formatter2.parse(lstWeeklyData.get(i).getWeekDate()));
-			weeklyDataAnalysis.setOpenPriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getOpenPriceWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setHighPriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getHighPriceWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setLowPriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getLowPriceWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setClosePriceWeekly(Double.parseDouble(lstWeeklyData.get(i).getClosePriceWeekly().replace(" ", "")));
-				
-			String VolumeWeekly = lstWeeklyData.get(i).getVolumeWeekly();
-			
-			if(!VolumeWeekly.contains("M"))
-			{
-				weeklyDataAnalysis.setVolumeWeekly(Double.parseDouble(lstWeeklyData.get(i).getVolumeWeekly().replace(" ", "")));
-			}
-			else
-			{
-				weeklyDataAnalysis.setVolumeWeekly(Double.parseDouble(lstWeeklyData.get(i).getVolumeWeekly().replace(" ", "").replace("M", "000000")));
-			}
-			 
-			String BBUBWeekly = lstWeeklyData.get(i).getBBUBWeekly();
-			
-			if(!BBUBWeekly.contains("NotinGraph"))
-			{
-				 weeklyDataAnalysis.setBBUBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBUBWeekly().replace(" ", "")));
-			}else  { 	
-				weeklyDataAnalysis.setBBUBWeekly(0.0);
-			}
-			
-			String BBLBWeekly = lstWeeklyData.get(i).getBBLBWeekly();
-			
-			if(!BBLBWeekly.contains("NotinGraph"))
-			{
-				 weeklyDataAnalysis.setBBLBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBLBWeekly().replace(" ", "")));
-			} else  {
-				weeklyDataAnalysis.setBBLBWeekly(0.0);
-			}
-			
-			weeklyDataAnalysis.setBBMBWeekly(Double.parseDouble(lstWeeklyData.get(i).getBBMBWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setEma20Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma20Weekly().replace(" ", "")));
-			weeklyDataAnalysis.setEma06Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma06Weekly().replace(" ", "").replace(":", "")));
-			weeklyDataAnalysis.setRSIWeekly(Double.parseDouble(lstWeeklyData.get(i).getRSIWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setMACDWeekly(Double.parseDouble(lstWeeklyData.get(i).getMACDWeekly()));
-			weeklyDataAnalysis.setMacdSignalWeekly(Double.parseDouble(lstWeeklyData.get(i).getMacdSignalWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setADXWeekly(Double.parseDouble(lstWeeklyData.get(i).getADXWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setPDIWeekly(Double.parseDouble(lstWeeklyData.get(i).getPDIWeekly().replace(" ", "")));
-			weeklyDataAnalysis.setMDIWeekly(Double.parseDouble(lstWeeklyData.get(i).getMDIWeekly().replace(" ", "")));
-
-			int ema20 = 0;
-			int ema06 = 0;
-			int RSI = 0;
-			int MACD = 0;
-			int MACDSignal = 0;
-			int MACDAboveSignal = 0;
-
-			ema20 = (int) Double.parseDouble(lstWeeklyData.get(i).getEma20Weekly().replace(" ", ""));
-			ema06 = (int) Double.parseDouble(lstWeeklyData.get(i).getEma06Weekly().replace(" ", ""));
-			RSI = (int) Double.parseDouble(lstWeeklyData.get(i).getRSIWeekly().replace(" ", ""));
-			MACD = (int) Double.parseDouble(lstWeeklyData.get(i).getMACDWeekly().replace(" ", ""));
-			MACDSignal = (int) Double.parseDouble(lstWeeklyData.get(i).getMacdSignalWeekly().replace(" ", ""));
-			
-			MACDAboveSignal = MACD - MACDSignal;
-			weeklyDataAnalysis.setMACDAboveSignal(MACDAboveSignal );
-			
-			if (ema20 > ema06) {
-
-				if ((ema20 / ema06) * 100 > 95) {
-					weeklyDataAnalysis.setEMABuyOrSell("EMA Cross: Ready to Sell");
-				}
-
-				else {
-					weeklyDataAnalysis.setEMABuyOrSell("EMA Cross: Sell");
-				}
-
-			} else {
-				if ((ema06 / ema20) * 100 > 95) {
-					weeklyDataAnalysis.setEMABuyOrSell("EMA Cross : Ready to Buy");
-				}
-
-				else {
-					weeklyDataAnalysis.setEMABuyOrSell("EMA Cross: Buy");
-				}
-
-			}
-
-			if (MACD > MACDSignal) {
-				// System.out.println("inside buy loop MACD" + MACD + " " + "MACDSignal" + MACDSignal);
-
-				weeklyDataAnalysis.setMACDBuyOrSell("Buy");
-
-			} else {
-				// // System.out.println("inside Sell loop MACD" + MACD + " " + "MACDSignal" +
-				// MACDSignal );
-
-				weeklyDataAnalysis.setMACDBuyOrSell("Sell");
-
-			}
-
-			if (RSI > 40) {
-
-				weeklyDataAnalysis.setRSIBuyOrSell("Sell");
-
-			} else {
-				weeklyDataAnalysis.setRSIBuyOrSell("Buy");
-			}
-
-			
-			int ADXPlus = (int) Double.parseDouble(lstWeeklyData.get(i).getPDIWeekly().replace(" ", ""));
-			int ADXMinus = (int) Double.parseDouble(lstWeeklyData.get(i).getMDIWeekly().replace(" ", ""));
-			
-			if (ADXPlus > ADXMinus ) {
-				weeklyDataAnalysis.setADXBuyOrSell("ADX Buy");
-			} else 
-			{
-				weeklyDataAnalysis.setADXBuyOrSell("ADX Sell");
-			}
-			
-		weeklyDataAnalysis.setEma50Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma50Weekly()));
-		weeklyDataAnalysis.setEma200Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma200Weekly()));
-			
-			lstWeeklyDataFinal.add(weeklyDataAnalysis);
-
-			DatabaseConnection dc = new DatabaseConnection();
-
-			try {
-				dc.insertWeeklyData(
-
-						lstWeeklyDataFinal.get(i).getWeeklyorDaily(), lstWeeklyDataFinal.get(i).getStockName(),
-						lstWeeklyDataFinal.get(i).getWeekDate(), lstWeeklyDataFinal.get(i).getOpenPriceWeekly(),
-						lstWeeklyDataFinal.get(i).getHighPriceWeekly(), lstWeeklyDataFinal.get(i).getLowPriceWeekly(),
-						lstWeeklyDataFinal.get(i).getClosePriceWeekly(), lstWeeklyDataFinal.get(i).getVolumeWeekly(),
-						lstWeeklyDataFinal.get(i).getBBUBWeekly(), lstWeeklyDataFinal.get(i).getBBLBWeekly(),
-						lstWeeklyDataFinal.get(i).getBBMBWeekly(), lstWeeklyDataFinal.get(i).getEma20Weekly(),	lstWeeklyDataFinal.get(i).getEma06Weekly(), 
-						lstWeeklyDataFinal.get(i).getRSIWeekly(),lstWeeklyDataFinal.get(i).getMACDWeekly(), lstWeeklyDataFinal.get(i).getMacdSignalWeekly(),
-						lstWeeklyDataFinal.get(i).getADXWeekly(), lstWeeklyDataFinal.get(i).getPDIWeekly(),
-						lstWeeklyDataFinal.get(i).getMDIWeekly(), lstWeeklyDataFinal.get(i).getMACDBuyOrSell(),
-						lstWeeklyDataFinal.get(i).getRSIBuyOrSell(), lstWeeklyDataFinal.get(i).getBBBuyOrSell(),
-						lstWeeklyDataFinal.get(i).getADXBuyOrSell(), lstWeeklyDataFinal.get(i).getEMABuyOrSell(),
-						lstWeeklyDataFinal.get(i).getMACDAboveSignal(),lstWeeklyDataFinal.get(i).getEma50Weekly(),	lstWeeklyDataFinal.get(i).getEma200Weekly()
-
-				);
-			} catch (Exception e) {
-				
-				// System.out.println("Weekly Analysis " + lstWeeklyDataFinal.get(i).getStockName()
-//						+ " Week Date :  "+ lstWeeklyDataFinal.get(i).getWeekDate()
-//						+ " MACD Buy or Sell : " + lstWeeklyDataFinal.get(i).getMACDBuyOrSell() 
-//						+ " MACD Daily : "+ lstWeeklyDataFinal.get(i).getMACDWeekly() 
-//						+ " MACD Signal : " + lstWeeklyDataFinal.get(i).getMacdSignalWeekly());
-
-			} finally
-			{
-				// System.out.println("Weekly Analysis " + lstWeeklyDataFinal.get(i).getStockName()
-//						+ " Week Date :  "+ lstWeeklyDataFinal.get(i).getWeekDate()
-//						+ " MACD Buy or Sell : " + lstWeeklyDataFinal.get(i).getMACDBuyOrSell() 
-//						+ " MACD Daily : "+ lstWeeklyDataFinal.get(i).getMACDWeekly() 
-//						+ " MACD Signal : " + lstWeeklyDataFinal.get(i).getMacdSignalWeekly());
-
-			}
-
-			
-		}
-	}
-
-	public void saveFinalDailyAnalysis() {
-
-		//String fileName = "DailyDataFinal.xlsx";
-		File finalfile = new File("c://Selenium//DailyDataFinal.xlsx");
-
-		Workbook finaldailyworkBook = null;
-		FileInputStream finaldailyfileInputStream = null;
-
-		// System.out.println(finalfile);
-
-		try {
-
-			finaldailyfileInputStream = new FileInputStream(finalfile);
-			finaldailyworkBook = new XSSFWorkbook(finaldailyfileInputStream);
-
-		} catch (IOException e1)
-
-		{
-			e1.printStackTrace();
-		}
-
-		Sheet sheet = finaldailyworkBook.getSheet("Data");
-
-		// Get the current count of rows in excel file
-
-		int rCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-
-		// Get the first row from the sheet
-
-		Row row = sheet.getRow(0);
-
-		// Create a new row and append it at last of sheet
-
-		// Create a loop over the cell of newly created Row
-
-		for (int rowCount = 0; rowCount < lstDailyDataFinal.size(); rowCount++) {
-
-			Row newRow = sheet.createRow(rowCount + 1);
-
-			{
-
-				// Fill data in row
-
-				Cell cell = newRow.createCell(0);
-				cell.setCellValue(lstDailyDataFinal.get(rowCount).getWeeklyorDaily());
-
-				Cell cell1 = newRow.createCell(1);
-				cell1.setCellValue(lstDailyDataFinal.get(rowCount).getStockName());
-
-				Cell cell2 = newRow.createCell(2);
-				cell2.setCellValue(lstDailyDataFinal.get(rowCount).getTradeDate());
-
-				Cell cell3 = newRow.createCell(3);
-				cell3.setCellValue(lstDailyDataFinal.get(rowCount).getOpenPriceDaily());
-
-				Cell cell4 = newRow.createCell(4);
-				cell4.setCellValue(lstDailyDataFinal.get(rowCount).getHighPriceDaily());
-
-				Cell cell5 = newRow.createCell(5);
-				cell5.setCellValue(lstDailyDataFinal.get(rowCount).getLowPriceDaily());
-
-				Cell cell6 = newRow.createCell(6);
-				cell6.setCellValue(lstDailyDataFinal.get(rowCount).getClosePriceDaily());
-
-				Cell cell7 = newRow.createCell(7);
-				cell7.setCellValue(lstDailyDataFinal.get(rowCount).getVolumeDaily());
-
-				Cell cell8 = newRow.createCell(8);
-				cell8.setCellValue(lstDailyDataFinal.get(rowCount).getBBUBDaily());
-
-				Cell cell9 = newRow.createCell(9);
-				cell9.setCellValue(lstDailyDataFinal.get(rowCount).getBBLBDaily());
-
-				Cell cell10 = newRow.createCell(10);
-				cell10.setCellValue(lstDailyDataFinal.get(rowCount).getBBMBDaily());
-
-				Cell cell11 = newRow.createCell(11);
-				cell11.setCellValue(lstDailyDataFinal.get(rowCount).getEma20Daily());
-
-				Cell cell12 = newRow.createCell(12);
-				cell12.setCellValue(lstDailyDataFinal.get(rowCount).getEma06Daily());
-
-				Cell cell13 = newRow.createCell(13);
-				cell13.setCellValue(lstDailyDataFinal.get(rowCount).getRSIDaily());
-
-				Cell cell14 = newRow.createCell(14);
-				cell14.setCellValue(lstDailyDataFinal.get(rowCount).getMACDDaily());
-
-				Cell cell15 = newRow.createCell(15);
-				cell15.setCellValue(lstDailyDataFinal.get(rowCount).getMacdSignalDaily());
-
-				Cell cell16 = newRow.createCell(16);
-				cell16.setCellValue(lstDailyDataFinal.get(rowCount).getADXDaily());
-
-				Cell cell17 = newRow.createCell(17);
-				cell17.setCellValue(lstDailyDataFinal.get(rowCount).getPDIDaily());
-
-				Cell cell18 = newRow.createCell(18);
-				cell18.setCellValue(lstDailyDataFinal.get(rowCount).getMDIDaily());
-
-				Cell cell19 = newRow.createCell(19);
-				cell19.setCellValue(lstDailyDataFinal.get(rowCount).getMACDBuyOrSell());
-
-				Cell cell20 = newRow.createCell(20);
-				cell20.setCellValue(lstDailyDataFinal.get(rowCount).getEMABuyOrSell());
-
-				Cell cell21 = newRow.createCell(21);
-				cell21.setCellValue(lstDailyDataFinal.get(rowCount).getBBBuyOrSell());
-
-				Cell cell22 = newRow.createCell(22);
-				cell22.setCellValue(lstDailyDataFinal.get(rowCount).getADXBuyOrSell());
-
-				Cell cell23 = newRow.createCell(23);
-				cell23.setCellValue(lstDailyDataFinal.get(rowCount).getMACDAboveSignal());
-				
-				Cell cell24 = newRow.createCell(24);
-				cell24.setCellValue(lstDailyDataFinal.get(rowCount).getScriptComments());
-
-			}
-
-			// Close input stream
-
-			try {
-				finaldailyfileInputStream.close();
-
-				// Create an object of FileOutputStream class to create write data in excel file
-
-				FileOutputStream dailyOutputStream = new FileOutputStream(finalfile);
-
-				// write data in the excel file
-
-				finaldailyworkBook.write(dailyOutputStream);
-
-				// close output stream
-
-				dailyOutputStream.close();
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-
-	public void saveFinalWeeklyAnalysis() {
-
-		//String fileName = "WeeklyDataFinal.xlsx";
-		File finalfile = new File("c://Selenium//WeeklyDataFinal.xlsx");
-		Workbook finalWeeklyworkBook = null;
-		FileInputStream finalWeeklyfileInputStream = null;
-
-		// System.out.println(finalfile);
-
-		try {
-
-			finalWeeklyfileInputStream = new FileInputStream(finalfile);
-			finalWeeklyworkBook = new XSSFWorkbook(finalWeeklyfileInputStream);
-
-		} catch (IOException e1)
-
-		{
-			e1.printStackTrace();
-		}
-
-		Sheet sheet = finalWeeklyworkBook.getSheet("Data");
-
-		// Get the current count of rows in excel file
-
-		int rCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-
-		// Get the first row from the sheet
-
-		Row row = sheet.getRow(0);
-
-		// Create a new row and append it at last of sheet
-
-		// Create a loop over the cell of newly created Row
-
-		for (int rowCount = 0; rowCount < lstWeeklyDataFinal.size(); rowCount++) {
-
-			Row newRow = sheet.createRow(rowCount + 1);
-
-			{
-
-				// Fill data in row
-
-				Cell cell = newRow.createCell(0);
-				cell.setCellValue(lstWeeklyDataFinal.get(rowCount).getWeeklyorDaily());
-
-				Cell cell1 = newRow.createCell(1);
-				cell1.setCellValue(lstWeeklyDataFinal.get(rowCount).getStockName());
-
-				Cell cell2 = newRow.createCell(2);
-				cell2.setCellValue(lstWeeklyDataFinal.get(rowCount).getWeekDate());
-
-				Cell cell3 = newRow.createCell(3);
-				cell3.setCellValue(lstWeeklyDataFinal.get(rowCount).getOpenPriceWeekly());
-
-				Cell cell4 = newRow.createCell(4);
-				cell4.setCellValue(lstWeeklyDataFinal.get(rowCount).getHighPriceWeekly());
-
-				Cell cell5 = newRow.createCell(5);
-				cell5.setCellValue(lstWeeklyDataFinal.get(rowCount).getLowPriceWeekly());
-
-				Cell cell6 = newRow.createCell(6);
-				cell6.setCellValue(lstWeeklyDataFinal.get(rowCount).getClosePriceWeekly());
-
-				Cell cell7 = newRow.createCell(7);
-				cell7.setCellValue(lstWeeklyDataFinal.get(rowCount).getVolumeWeekly());
-
-				Cell cell8 = newRow.createCell(8);
-				cell8.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBUBWeekly());
-
-				Cell cell9 = newRow.createCell(9);
-				cell9.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBLBWeekly());
-
-				Cell cell10 = newRow.createCell(10);
-				cell10.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBMBWeekly());
-
-				Cell cell11 = newRow.createCell(11);
-				cell11.setCellValue(lstWeeklyDataFinal.get(rowCount).getEma20Weekly());
-
-				Cell cell12 = newRow.createCell(12);
-				cell12.setCellValue(lstWeeklyDataFinal.get(rowCount).getEma06Weekly());
-
-				Cell cell13 = newRow.createCell(13);
-				cell13.setCellValue(lstWeeklyDataFinal.get(rowCount).getRSIWeekly());
-
-				Cell cell14 = newRow.createCell(14);
-				cell14.setCellValue(lstWeeklyDataFinal.get(rowCount).getMACDWeekly());
-
-				Cell cell15 = newRow.createCell(15);
-				cell15.setCellValue(lstWeeklyDataFinal.get(rowCount).getMacdSignalWeekly());
-
-				Cell cell16 = newRow.createCell(16);
-				cell16.setCellValue(lstWeeklyDataFinal.get(rowCount).getADXWeekly());
-
-				Cell cell17 = newRow.createCell(17);
-				cell17.setCellValue(lstWeeklyDataFinal.get(rowCount).getPDIWeekly());
-
-				Cell cell18 = newRow.createCell(18);
-				cell18.setCellValue(lstWeeklyDataFinal.get(rowCount).getMDIWeekly());
-
-				Cell cell19 = newRow.createCell(19);
-				cell19.setCellValue(lstWeeklyDataFinal.get(rowCount).getMACDBuyOrSell());
-
-				Cell cell20 = newRow.createCell(20);
-				cell20.setCellValue(lstWeeklyDataFinal.get(rowCount).getEMABuyOrSell());
-
-				Cell cell21 = newRow.createCell(21);
-				cell21.setCellValue(lstWeeklyDataFinal.get(rowCount).getBBBuyOrSell());
-
-				Cell cell22 = newRow.createCell(22);
-				cell22.setCellValue(lstWeeklyDataFinal.get(rowCount).getADXBuyOrSell());
-
-				Cell cell23 = newRow.createCell(23);
-				cell23.setCellValue(lstWeeklyDataFinal.get(rowCount).getMACDAboveSignal());
-
-			}
-
-			// Close input stream
-
-			try {
-				finalWeeklyfileInputStream.close();
-
-				// Create an object of FileOutputStream class to create write data in excel file
-
-				FileOutputStream WeeklyOutputStream = new FileOutputStream(finalfile);
-
-				// write data in the excel file
-
-				finalWeeklyworkBook.write(WeeklyOutputStream);
-
-				// close output stream
-
-				WeeklyOutputStream.close();
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-
-	public void DisplayStocksData() {
-
-//		for (int i = 0; i < lstWeeklyDataFinal.size(); i++) {
-//			// System.out.println("Weekly " + lstWeeklyDataFinal.get(i).getStockName() + " MACD Buy or Sell : "
-//			//		+ lstWeeklyDataFinal.get(i).getMACDBuyOrSell() + " MACD Daily : "
-//			//		+ lstWeeklyDataFinal.get(i).getMACDWeekly() + " MACD Signal : "
-//			//		+ lstWeeklyDataFinal.get(i).getMacdSignalWeekly());
-//		}
-//
-//		for (int i = 0; i < lstDailyDataFinal.size(); i++) {
-//			// System.out.println("Daily " + lstDailyDataFinal.get(i).getStockName() + " MACD Buy or Sell : "
-//			//		+ lstDailyDataFinal.get(i).getMACDBuyOrSell() + " MACD Daily : "
-//			//		+ lstDailyDataFinal.get(i).getMACDDaily() + " MACD Signal : "
-//			//		+ lstDailyDataFinal.get(i).getMacdSignalDaily());
-//		}
-
-	}
+	
 
 }

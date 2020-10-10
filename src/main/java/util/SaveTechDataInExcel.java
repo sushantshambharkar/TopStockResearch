@@ -1,16 +1,7 @@
 package util;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbookType;
-
-import pages.TopstockresearchTechPage;
-import pojos.StockRecord;
 
 public class SaveTechDataInExcel {
 	

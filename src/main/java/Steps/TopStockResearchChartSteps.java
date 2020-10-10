@@ -4,14 +4,19 @@ package Steps;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import net.thucydides.core.annotations.Step;
+import pages.AnalyzeStocksPage;
 import pages.CreateFNOList;
 import pages.LoginPage;
+import pages.SaveFinalExcelFilesPage;
+import net.thucydides.core.annotations.Steps;
 import pages.TopstockresearchChartPage;
 
 public class TopStockResearchChartSteps {
 	
+	@Steps 
 	private TopstockresearchChartPage topstockresearchChartPage;
+	private AnalyzeStocksPage analyzeStocksSteps;
+	private SaveFinalExcelFilesPage saveFinalExcelFiles;
 	private CreateFNOList createFNOList;
 	private LoginPage loginpage;
 	
@@ -76,12 +81,12 @@ public class TopStockResearchChartSteps {
 
 	public void AnalyseandSaveinDB() throws ParseException
 	{
-		topstockresearchChartPage.AnalyzeData();
+		analyzeStocksSteps.AnalyzeData();
 		
-		topstockresearchChartPage.DisplayStocksData();
+		analyzeStocksSteps.DisplayStocksData();
 		
-		topstockresearchChartPage.saveFinalDailyAnalysis();
+		saveFinalExcelFiles.saveFinalDailyAnalysis();
 		
-		topstockresearchChartPage.saveFinalWeeklyAnalysis();	
+		saveFinalExcelFiles.saveFinalWeeklyAnalysis();	
 	}
 }

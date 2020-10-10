@@ -24,7 +24,7 @@ public class DailyDataAnalysis {
 	private Double	PDIDaily	;
 	private Double	MDIDaily	;
 	private String  MACDBuyOrSell;
-	private int  MACDAboveSignal;
+	private double  MACDAboveSignal;
 	private String  RSIBuyOrSell;
 	private String  BBBuyOrSell;
 	private String  ADXBuyOrSell;
@@ -156,10 +156,10 @@ public class DailyDataAnalysis {
 	public void setMACDBuyOrSell(String mACDBuyOrSell) {
 		MACDBuyOrSell = mACDBuyOrSell;
 	}
-	public int getMACDAboveSignal() {
+	public double getMACDAboveSignal() {
 		return MACDAboveSignal;
 	}
-	public void setMACDAboveSignal(int mACDAboveSignal) {
+	public void setMACDAboveSignal(double mACDAboveSignal) {
 		MACDAboveSignal = mACDAboveSignal;
 	}
 	public String getRSIBuyOrSell() {
@@ -205,4 +205,5 @@ public class DailyDataAnalysis {
 	public void setEma200Daily(double d) {
 		this.ema200Daily = d;
 	}
+
 }

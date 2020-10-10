@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDriver;
-
 public class DatabaseConnection {
 	
 	public SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -19,7 +17,7 @@ public class DatabaseConnection {
 			Double LowPriceDaily, Double ClosePriceDaily, Double VolumeDaily, Double BBUBDaily, Double BBLBDaily,
 			Double BBMBDaily, Double ema20Daily, Double ema06Daily, Double RSIDaily, Double MACDDaily,
 			Double MacdSignalDaily, Double ADXDaily, Double PDIDaily, Double MDIDaily, String MACDBuyOrSell,
-			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, int MACDAboveSignal, String scrComments, double ema50Daily, double ema200Daily
+			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, Double MACDAboveSignal, String scrComments, double ema50Daily, double ema200Daily
 
 	) {
 
@@ -46,17 +44,17 @@ public class DatabaseConnection {
 				
 			String d2 = TradeDate.toString() ;
 			
+		//	System.out.println(  " TradeDate is  " +  d2);
+			
 			String monthmm = d2.substring(4, 7);
 			
 			String daydd = d2.substring(8, 10);
 			
-			String yearyy = d2.substring(24, 28);
+			String yearyy = d2.substring(24, d2.length());
 			
 			String d3 = yearyy + "-" + monthmm + "-" + daydd;
 			
-	//		System.out.println(yearyy + "-" + monthmm + "-" + daydd);
-			
-			
+		//	System.out.println(TradeDate + "is  " +  yearyy + "-" + monthmm + "-" + daydd);
 			
 			String query = " Insert into DailyDataAnalysis (WeeklyorDaily\r\n" 
 			+ "      ,StockName\r\n"
@@ -89,7 +87,7 @@ public class DatabaseConnection {
 					+ ema200Daily  	
 					+ " )";
 
-	//		System.out.println("query  " + query);
+		//	System.out.println("query  " + query);
 
 			PreparedStatement pst = conn.prepareStatement(query);
 			
@@ -129,7 +127,7 @@ public class DatabaseConnection {
 			Double LowPriceWeekly, Double ClosePriceWeekly, Double VolumeWeekly, Double BBUBWeekly, Double BBLBWeekly,
 			Double BBMBWeekly, Double ema20Weekly, Double ema06Weekly, Double RSIWeekly, Double MACDWeekly,
 			Double MacdSignalWeekly, Double ADXWeekly, Double PDIWeekly, Double MDIWeekly, String MACDBuyOrSell,
-			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, int MACDAboveSignal,
+			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, Double MACDAboveSignal,
 			Double ema50Weekly, Double ema200Weekly
 
 	) {
@@ -150,19 +148,22 @@ public class DatabaseConnection {
 			conn = DriverManager.getConnection(connectionUrl);
 
 			// Checking for the connection( returns boolean false if connected)
-		//	System.out.println("SchemaName " + conn.getSchema());
+			//	System.out.println("SchemaName " + conn.getSchema());
 
 			String d2 = WeekDate.toString() ;
+			
+		//	System.out.println(  " WeekDate  is  " +  d2);
+			
 			
 			String monthmm = d2.substring(4, 7);
 			
 			String daydd = d2.substring(8, 10);
 			
-			String yearyy = d2.substring(24, 28);
+			String yearyy = d2.substring(24, d2.length());
 			
 			String d3 = yearyy + "-" + monthmm + "-" + daydd;
 			
-			//System.out.println(yearyy + "-" + monthmm + "-" + daydd);
+		//	System.out.println(WeekDate + "is  " + yearyy + "-" + monthmm + "-" + daydd);
 			
 			String query = " Insert into WeeklyDataAnalysis (WeeklyorDaily\r\n" 
 					+ "      ,StockName\r\n"
@@ -204,7 +205,7 @@ public class DatabaseConnection {
 					+ MACDBuyOrSell + "'" + "," + "'" + RSIBuyOrSell + "'" + "," + "'" + BBBuyOrSell + "'" + "," + "'"
 					+ ADXBuyOrSell + "'" + "," + "'" + EMABuyOrSell + "'" + "," + MACDAboveSignal +  "," + + ema50Weekly + "," + ema200Weekly +" )";
 
-//			System.out.println("Weekly query  " + query);
+		//	System.out.println("Weekly query  " + query);
 
 			PreparedStatement pst = conn.prepareStatement(query);
 
