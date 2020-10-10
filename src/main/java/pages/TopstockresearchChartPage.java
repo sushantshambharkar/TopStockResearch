@@ -355,6 +355,7 @@ public class TopstockresearchChartPage extends PageObject {
 			scriptname = myStockdropdown.getSelectedVisibleTextValue();
 			
 
+			
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
