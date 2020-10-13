@@ -342,7 +342,7 @@ public class TopstockresearchChartPage extends PageObject {
 			e.printStackTrace();
 		}
 
-		for (int x = 1; x < 130; x++)
+		for (int x = 1; x <= 130; x++)
 
 		{
 

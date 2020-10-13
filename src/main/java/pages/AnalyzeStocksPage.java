@@ -160,7 +160,14 @@ public class AnalyzeStocksPage extends PageObject {
 				dailyDataAnalysis.setADXBuyOrSell("ADX Sell");
 			}
 			
-			dailyDataAnalysis.setScriptComments(lstDailyData.get(i).getScriptComments());
+			String scriptsComments = lstDailyData.get(i).getScriptComments();
+			
+			String scriptsCommentstrend = scriptsComments.substring(scriptsComments.indexOf("more") + 5,scriptsComments.indexOf("than"));
+			
+			String scriptsCommentstrendstrenght = scriptsComments.substring(scriptsComments.indexOf("than") + 5,scriptsComments.indexOf("of"));
+					
+			dailyDataAnalysis.setScriptComments(scriptsCommentstrend +" " + scriptsCommentstrendstrenght);
+			
 			dailyDataAnalysis.setEma50Daily(Double.parseDouble(lstDailyData.get(i).getEma50Daily()));
 			dailyDataAnalysis.setEma200Daily(Double.parseDouble(lstDailyData.get(i).getEma200Daily()));
 			
@@ -383,6 +390,12 @@ public class AnalyzeStocksPage extends PageObject {
 
 			
 		}
+	}
+
+
+	private Object indexOf(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
