@@ -141,6 +141,7 @@ public class AnalyzeStocksPage extends PageObject {
 			
 			if (EMABuyOrSell.isEmpty()) {dailyDataAnalysis.setEMABuyOrSell("Ready for Trade");}
 			
+			
 			if (RSI > 40) {
 
 				dailyDataAnalysis.setRSIBuyOrSell(" RSI Sell");
