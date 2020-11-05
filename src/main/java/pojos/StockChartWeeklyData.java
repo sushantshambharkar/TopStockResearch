@@ -20,6 +20,7 @@ public class StockChartWeeklyData {
 	private String	ema06Weekly	;
 	private String	ema50Weekly	;
 	private String	ema200Weekly	;
+	private String  psar2006Weekly;
 	private String	RSIWeekly	;
 	private String	MACDWeekly	;
 	private String	MacdSignalWeekly	;
@@ -153,6 +154,12 @@ public class StockChartWeeklyData {
 	}
 	public void setMDIWeekly(String mDIWeekly) {
 		MDIWeekly = mDIWeekly;
+	}
+	public String getPsar2006Weekly() {
+		return psar2006Weekly;
+	}
+	public void setPsar2006Weekly(String psar2006Weekly) {
+		this.psar2006Weekly = psar2006Weekly;
 	}
 
 	

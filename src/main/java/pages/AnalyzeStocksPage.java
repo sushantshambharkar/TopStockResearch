@@ -171,6 +171,8 @@ public class AnalyzeStocksPage extends PageObject {
 			dailyDataAnalysis.setEma50Daily(Double.parseDouble(lstDailyData.get(i).getEma50Daily()));
 			dailyDataAnalysis.setEma200Daily(Double.parseDouble(lstDailyData.get(i).getEma200Daily()));
 			
+			dailyDataAnalysis.setPSARDaily(Double.parseDouble(lstDailyData.get(i).getPsar2006Daily()));
+			
 			lstDailyDataFinal.add(dailyDataAnalysis);
 			
 			System.out.println("before db insert date " + lstDailyDataFinal.get(i).getTradeDate());
@@ -194,7 +196,7 @@ public class AnalyzeStocksPage extends PageObject {
 						lstDailyDataFinal.get(i).getADXBuyOrSell(), lstDailyDataFinal.get(i).getEMABuyOrSell(),
 						lstDailyDataFinal.get(i).getMACDAboveSignal(), lstDailyDataFinal.get(i).getScriptComments(),
 						lstDailyDataFinal.get(i).getEma50Daily(),
-						lstDailyDataFinal.get(i).getEma200Daily()
+						lstDailyDataFinal.get(i).getEma200Daily(),lstDailyDataFinal.get(i).getPSARDaily()
 
 				);
 			} catch (Exception e) {
@@ -346,6 +348,8 @@ public class AnalyzeStocksPage extends PageObject {
 			
 		weeklyDataAnalysis.setEma50Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma50Weekly()));
 		weeklyDataAnalysis.setEma200Weekly(Double.parseDouble(lstWeeklyData.get(i).getEma200Weekly()));
+		
+		weeklyDataAnalysis.setPSAR2006Weekly(Double.parseDouble(lstWeeklyData.get(i).getPsar2006Weekly()));
 			
 			lstWeeklyDataFinal.add(weeklyDataAnalysis);
 			
@@ -367,7 +371,8 @@ public class AnalyzeStocksPage extends PageObject {
 						lstWeeklyDataFinal.get(i).getMDIWeekly(), lstWeeklyDataFinal.get(i).getMACDBuyOrSell(),
 						lstWeeklyDataFinal.get(i).getRSIBuyOrSell(), lstWeeklyDataFinal.get(i).getBBBuyOrSell(),
 						lstWeeklyDataFinal.get(i).getADXBuyOrSell(), lstWeeklyDataFinal.get(i).getEMABuyOrSell(),
-						lstWeeklyDataFinal.get(i).getMACDAboveSignal(),lstWeeklyDataFinal.get(i).getEma50Weekly(),	lstWeeklyDataFinal.get(i).getEma200Weekly()
+						lstWeeklyDataFinal.get(i).getMACDAboveSignal(),lstWeeklyDataFinal.get(i).getEma50Weekly(),	lstWeeklyDataFinal.get(i).getEma200Weekly(),
+						lstWeeklyDataFinal.get(i).getPSAR2006Weekly()
 
 				);
 			} catch (Exception e) {

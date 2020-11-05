@@ -157,6 +157,9 @@ public class TopstockresearchChartPage extends PageObject {
 
 			actionProvider.moveToElement(usernavigation).moveByOffset(870, 0).click().build().perform();
 
+			//actionProvider.moveToElement(usernavigation).moveByOffset(655, 0).click().build().perform();
+			
+			//actionProvider.moveToElement(usernavigation).moveByOffset(550, 0).click().build().perform();
 			try {
 				Thread.sleep(15000);
 			} catch (InterruptedException e) {
@@ -183,7 +186,7 @@ public class TopstockresearchChartPage extends PageObject {
 
 			if (!metricvalues.contains("ema200:")) {
 			
-				metricvalues = metricvalues.replace("MACD:", "ema200:0.0 MACD:");
+				metricvalues = metricvalues.replace("PSAR:", "ema200:0.0 PSAR:");
 				
 			}
 			userInput.clear();
@@ -238,7 +241,8 @@ public class TopstockresearchChartPage extends PageObject {
 			String ema20Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6,dailyMetrics.indexOf("ema06:"));
 			String ema06Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema06:") + 7,dailyMetrics.indexOf("ema50:"));
 			String ema50Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema50:") + 6,dailyMetrics.indexOf("ema200:"));
-			String ema200Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema200:") + 7,dailyMetrics.indexOf("MACD:"));
+			String ema200Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema200:") + 7,dailyMetrics.indexOf("PSAR:"));
+			String psar2006Daily = dailyMetrics.substring(dailyMetrics.indexOf("PSAR:") + 5,dailyMetrics.indexOf("MACD:"));
 			String MACDDaily = dailyMetrics.substring(dailyMetrics.indexOf("MACD:") + 5,dailyMetrics.indexOf("MacdSignal:"));
 			String MacdSignalDaily = dailyMetrics.substring(dailyMetrics.indexOf("MacdSignal:") + 11,dailyMetrics.indexOf("RSI:"));
 			String RSIDaily = dailyMetrics.substring(dailyMetrics.indexOf("RSI:") + 4, dailyMetrics.indexOf("ADX:"));
@@ -283,6 +287,7 @@ public class TopstockresearchChartPage extends PageObject {
 			stockChartDailyData.setEma06Daily(ema06Daily);
 			stockChartDailyData.setEma50Daily(ema50Daily);
 			stockChartDailyData.setEma200Daily(ema200Daily);
+			stockChartDailyData.setPsar2006Daily(psar2006Daily);
 			stockChartDailyData.setRSIDaily(RSIDaily);
 			stockChartDailyData.setMACDDaily(MACDDaily);
 			stockChartDailyData.setMacdSignalDaily(MacdSignalDaily);
@@ -369,7 +374,11 @@ public class TopstockresearchChartPage extends PageObject {
 
 			Actions actionProvider = new Actions(dailydriver);
 
-			actionProvider.moveToElement(usernavigation).moveByOffset(870, 0).click().build().perform();
+			 actionProvider.moveToElement(usernavigation).moveByOffset(870, 0).click().build().perform();
+			
+			//actionProvider.moveToElement(usernavigation).moveByOffset(655, 0).click().build().perform();
+			
+			//actionProvider.moveToElement(usernavigation).moveByOffset(540, 0).click().build().perform();
 
 			try {
 				Thread.sleep(15000);
@@ -401,7 +410,7 @@ public class TopstockresearchChartPage extends PageObject {
 			
 			if (!metricvalues.contains("EMA200:")) {
 				
-				metricvalues = metricvalues.replace("MACD:", "EMA200:0.0 MACD:");
+				metricvalues = metricvalues.replace("PSAR:", "EMA200:0.0 PSAR:");
 				
 			}
 			
@@ -441,7 +450,8 @@ public class TopstockresearchChartPage extends PageObject {
 			String ema20Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema20:") + 6,weeklyMetrics.indexOf("ema06:"));
 			String ema06Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema06:") +6,weeklyMetrics.indexOf("ema50:"));
 			String ema50Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema50:") + 6,weeklyMetrics.indexOf("EMA200:"));
-			String ema200Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("EMA200:") + 7,weeklyMetrics.indexOf("MACD:"));
+			String ema200Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("EMA200:") + 7,weeklyMetrics.indexOf("PSAR:"));
+			String psar2006Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("PSAR:") + 7,weeklyMetrics.indexOf("MACD:"));
 			String MACDWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MACD:") + 5,	weeklyMetrics.indexOf("MacdSignal:"));
 			String MacdSignalWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MacdSignal:") + 11,weeklyMetrics.indexOf("RSI:"));
 			String RSIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("RSI:") + 4,
@@ -489,6 +499,7 @@ public class TopstockresearchChartPage extends PageObject {
 			stockChartWeeklyData.setEma06Weekly(ema06Weekly);
 			stockChartWeeklyData.setEma50Weekly(ema50Weekly);
 			stockChartWeeklyData.setEma200Weekly(ema200Weekly);
+			stockChartWeeklyData.setPsar2006Weekly(psar2006Weekly);
 			stockChartWeeklyData.setRSIWeekly(RSIWeekly);
 			stockChartWeeklyData.setMACDWeekly(MACDWeekly);
 			stockChartWeeklyData.setMacdSignalWeekly(MacdSignalWeekly);
@@ -617,13 +628,14 @@ public class TopstockresearchChartPage extends PageObject {
 				Cell cell18 = newRow.createCell(18);
 				cell18.setCellValue(lststoryChartWeeklyData.get(rowCount).getMDIWeekly());
 				
+				Cell cell19 = newRow.createCell(19);
+				cell19.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma50Weekly());
+
+				Cell cell20 = newRow.createCell(20);
+				cell20.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma200Weekly());
 				
-				Cell cell20 = newRow.createCell(19);
-				cell20.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma50Weekly());
-
-				Cell cell21 = newRow.createCell(20);
-				cell21.setCellValue(lststoryChartWeeklyData.get(rowCount).getEma200Weekly());
-
+				Cell cell21 = newRow.createCell(21);
+				cell21.setCellValue(lststoryChartWeeklyData.get(rowCount).getPsar2006Weekly());
 			}
 
 			// Close input stream
@@ -754,13 +766,15 @@ public class TopstockresearchChartPage extends PageObject {
 				
 				Cell cell19 = newRow.createCell(19);
 				cell19.setCellValue(lststoryChartDailyData.get(rowCount).getScriptComments());
-				
-				
+								
 				Cell cell20 = newRow.createCell(20);
 				cell20.setCellValue(lststoryChartDailyData.get(rowCount).getEma50Daily());
 
 				Cell cell21 = newRow.createCell(21);
 				cell21.setCellValue(lststoryChartDailyData.get(rowCount).getEma200Daily());
+				
+				Cell cell22 = newRow.createCell(22);
+				cell22.setCellValue(lststoryChartDailyData.get(rowCount).getPsar2006Daily());
 			}
 
 			// Close input stream

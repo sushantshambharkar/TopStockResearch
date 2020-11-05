@@ -20,6 +20,7 @@ public class DailyDataAnalysis {
 	private Double	RSIDaily	;
 	private Double	MACDDaily	;
 	private Double	MacdSignalDaily	;
+	private Double  PSARDaily	;
 	private Double	ADXDaily	;
 	private Double	PDIDaily	;
 	private Double	MDIDaily	;
@@ -204,6 +205,12 @@ public class DailyDataAnalysis {
 	}
 	public void setEma200Daily(double d) {
 		this.ema200Daily = d;
+	}
+	public Double getPSARDaily() {
+		return PSARDaily;
+	}
+	public void setPSARDaily(Double pSARDaily) {
+		this.PSARDaily = pSARDaily;
 	}
 
 }

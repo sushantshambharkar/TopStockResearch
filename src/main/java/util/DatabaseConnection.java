@@ -17,7 +17,8 @@ public class DatabaseConnection {
 			Double LowPriceDaily, Double ClosePriceDaily, Double VolumeDaily, Double BBUBDaily, Double BBLBDaily,
 			Double BBMBDaily, Double ema20Daily, Double ema06Daily, Double RSIDaily, Double MACDDaily,
 			Double MacdSignalDaily, Double ADXDaily, Double PDIDaily, Double MDIDaily, String MACDBuyOrSell,
-			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, Double MACDAboveSignal, String scrComments, double ema50Daily, double ema200Daily
+			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, 
+			Double MACDAboveSignal, String scrComments, double ema50Daily, double ema200Daily , Double psarDaily
 
 	) {
 
@@ -70,6 +71,7 @@ public class DatabaseConnection {
 					+ ", ScriptComments  "
 					+",ema50Daily "
 					+",ema200Daily "
+					+",psarDaily"
 					+ ") Values (" 
 					+ "'" + WeeklyorDaily + "'" + "," 
 					+ "'" + StockName + "'" + "," 
@@ -84,7 +86,8 @@ public class DatabaseConnection {
 					+ MACDAboveSignal + "," 
 					+ "'" + scrComments + "'" + ","
 					+ ema50Daily + "," 		
-					+ ema200Daily  	
+					+ ema200Daily + "," 
+					+ psarDaily
 					+ " )";
 
 		//	System.out.println("query  " + query);
@@ -128,7 +131,7 @@ public class DatabaseConnection {
 			Double BBMBWeekly, Double ema20Weekly, Double ema06Weekly, Double RSIWeekly, Double MACDWeekly,
 			Double MacdSignalWeekly, Double ADXWeekly, Double PDIWeekly, Double MDIWeekly, String MACDBuyOrSell,
 			String RSIBuyOrSell, String BBBuyOrSell, String ADXBuyOrSell, String EMABuyOrSell, Double MACDAboveSignal,
-			Double ema50Weekly, Double ema200Weekly
+			Double ema50Weekly, Double ema200Weekly , Double psarWeekly
 
 	) {
 
@@ -189,6 +192,7 @@ public class DatabaseConnection {
 					+ "	  	 ,MACDAboveSignal "
 					+ "      ,ema50Weekly\r\n" 
 					+ "      ,ema200Weekly\r\n"
+					+ "      ,psarWeekly\r\n"
 					+ ") Values (" 
 					+ "'" + WeeklyorDaily + "'" + ","
 					+ "'" + StockName + "'" + "," 
@@ -203,7 +207,11 @@ public class DatabaseConnection {
 					+ "," + BBMBWeekly + "," + ema20Weekly + "," + ema06Weekly + "," + RSIWeekly + "," + MACDWeekly
 					+ "," + MacdSignalWeekly + "," + ADXWeekly + "," + PDIWeekly + "," + MDIWeekly + "," + "'"
 					+ MACDBuyOrSell + "'" + "," + "'" + RSIBuyOrSell + "'" + "," + "'" + BBBuyOrSell + "'" + "," + "'"
-					+ ADXBuyOrSell + "'" + "," + "'" + EMABuyOrSell + "'" + "," + MACDAboveSignal +  "," + + ema50Weekly + "," + ema200Weekly +" )";
+					+ ADXBuyOrSell + "'" + "," + "'" + EMABuyOrSell + "'" + "," + MACDAboveSignal 
+					+ "," + ema50Weekly 
+					+ "," + ema200Weekly 
+					+ "," + psarWeekly 
+					+ " )";
 
 		//	System.out.println("Weekly query  " + query);
 

@@ -18,6 +18,7 @@ public class StockChartDailyData {
 	private String	ema06Daily	;
 	private String	ema50Daily	;
 	private String	ema200Daily	;
+	private String  psar2006Daily;
 	private String	RSIDaily	;
 	private String	MACDDaily	;
 	private String	MacdSignalDaily	;
@@ -157,6 +158,12 @@ public class StockChartDailyData {
 	}
 	public void setScriptComments(String scriptComments) {
 		ScriptComments = scriptComments;
+	}
+	public String getPsar2006Daily() {
+		return psar2006Daily;
+	}
+	public void setPsar2006Daily(String psar2006Daily) {
+		this.psar2006Daily = psar2006Daily;
 	}
 
 }

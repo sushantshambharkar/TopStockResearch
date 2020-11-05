@@ -23,6 +23,7 @@ public class WeeklyDataAnalysis {
 	private Double	RSIWeekly	;
 	private Double	MACDWeekly	;
 	private Double	MacdSignalWeekly	;
+	private Double  PSAR2006Weekly;
 	private Double	ADXWeekly	;
 	private Double	PDIWeekly	;
 	private Double	MDIWeekly	;
@@ -201,6 +202,11 @@ public class WeeklyDataAnalysis {
 		EMABuyOrSell = eMABuyOrSell;
 	}
 
-
+	public Double getPSAR2006Weekly() {
+		return PSAR2006Weekly;
+	}
+	public void setPSAR2006Weekly(Double pSAR2006Weekly) {
+		this.PSAR2006Weekly = pSAR2006Weekly;
+	}
 	
 }
