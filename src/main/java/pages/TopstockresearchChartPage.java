@@ -138,19 +138,13 @@ public class TopstockresearchChartPage extends PageObject {
 			usernavigation.click();
 
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+	
 			WebDriver dailydriver = getDriver();
 
 			Actions actionProvider = new Actions(dailydriver);
@@ -161,7 +155,7 @@ public class TopstockresearchChartPage extends PageObject {
 			
 			//actionProvider.moveToElement(usernavigation).moveByOffset(550, 0).click().build().perform();
 			try {
-				Thread.sleep(15000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -198,7 +192,7 @@ public class TopstockresearchChartPage extends PageObject {
 			userInput.sendKeys(Keys.ENTER);
 			userInput.sendKeys(Keys.TAB);
 		
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			
 			scriptcomments = stockRanking.getTextValue();
 			
@@ -234,15 +228,15 @@ public class TopstockresearchChartPage extends PageObject {
 			String ClosePriceDaily = dailyMetrics.substring(dailyMetrics.indexOf("Close:") + 6,
 					dailyMetrics.indexOf("Volume:"));
 			String VolumeDaily = dailyMetrics.substring(dailyMetrics.indexOf("Volume:") + 7,
-					dailyMetrics.indexOf("BBUB:"));
-			String BBUBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBUB:") + 5, dailyMetrics.indexOf("BBLB:"));
-			String BBLBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBLB:") + 5, dailyMetrics.indexOf("BBMB:"));
-			String BBMBDaily = dailyMetrics.substring(dailyMetrics.indexOf("BBMB:") + 5, dailyMetrics.indexOf("ema20:"));
-			String ema20Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6,dailyMetrics.indexOf("ema06:"));
-			String ema06Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema06:") + 7,dailyMetrics.indexOf("ema50:"));
+					dailyMetrics.indexOf("ema20:"));
+			String ema20Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema20:") + 6,dailyMetrics.indexOf("ema06::"));
+			String ema06Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema06::") + 7,dailyMetrics.indexOf("ema50:"));
 			String ema50Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema50:") + 6,dailyMetrics.indexOf("ema200:"));
 			String ema200Daily = dailyMetrics.substring(dailyMetrics.indexOf("ema200:") + 7,dailyMetrics.indexOf("PSAR:"));
-			String psar2006Daily = dailyMetrics.substring(dailyMetrics.indexOf("PSAR:") + 5,dailyMetrics.indexOf("MACD:"));
+			String psar2006Daily = dailyMetrics.substring(dailyMetrics.indexOf("PSAR:") + 5, dailyMetrics.indexOf("Bollinger Bands Upper:"));
+			String BBUBDaily = dailyMetrics.substring(dailyMetrics.indexOf("Bollinger Bands Upper:") + 22, dailyMetrics.indexOf("Middle:"));
+			String BBMBDaily = dailyMetrics.substring(dailyMetrics.indexOf("Middle:") + 7, dailyMetrics.indexOf("Lower:"));
+			String BBLBDaily = dailyMetrics.substring(dailyMetrics.indexOf("Lower:") + 6,dailyMetrics.indexOf("MACD:"));
 			String MACDDaily = dailyMetrics.substring(dailyMetrics.indexOf("MACD:") + 5,dailyMetrics.indexOf("MacdSignal:"));
 			String MacdSignalDaily = dailyMetrics.substring(dailyMetrics.indexOf("MacdSignal:") + 11,dailyMetrics.indexOf("RSI:"));
 			String RSIDaily = dailyMetrics.substring(dailyMetrics.indexOf("RSI:") + 4, dailyMetrics.indexOf("ADX:"));
@@ -250,25 +244,25 @@ public class TopstockresearchChartPage extends PageObject {
 			String PDIDaily = dailyMetrics.substring(dailyMetrics.indexOf("PDI:") + 4, dailyMetrics.indexOf("MDI:"));
 			String MDIDaily = dailyMetrics.substring(dailyMetrics.indexOf("MDI:") + 4, dailyMetrics.indexOf("scriptcomments:"));
 			String ScriptComments = dailyMetrics.substring(dailyMetrics.indexOf("scriptcomments:") + 15, dailyMetrics.length());
-			// System.out.println("DailyorDaily	" + WeeklyorDaily);
-			// System.out.println("StockName	" + StockName);
-			// System.out.println("TradeDate	" + TradeDate);
-			// System.out.println("OpenPriceDaily	" + OpenPriceDaily);
-			// System.out.println("HighPriceDaily		" + HighPriceDaily);
-			// System.out.println("LowPriceDaily		" + LowPriceDaily);
-			// System.out.println("ClosePriceDaily	" + ClosePriceDaily);
-			// System.out.println("VolumeDaily		" + VolumeDaily);
-			// System.out.println("BBUBDaily			" + BBUBDaily);
-			// System.out.println("BBLBDaily			" + BBLBDaily);
-			// System.out.println("BBMBDaily			" + BBMBDaily);
-			// System.out.println("ema20Daily	" + ema20Daily);
-			// System.out.println("ema06Daily	" + ema06Daily);
-			// System.out.println("RSIDaily			" + RSIDaily);
-			// System.out.println("MACDDaily			" + MACDDaily);
-			// System.out.println("MacdSignalDaily	" + MacdSignalDaily);
-			// System.out.println("ADXDaily			" + ADXDaily);
-			// System.out.println("PDIDaily			" + PDIDaily);
-			// System.out.println("MDIDaily			" + MDIDaily);
+//			 System.out.println("DailyorDaily	" + WeeklyorDaily);
+//			 System.out.println("StockName	" + StockName);
+//			 System.out.println("TradeDate	" + TradeDate);
+//			 System.out.println("OpenPriceDaily	" + OpenPriceDaily);
+//			 System.out.println("HighPriceDaily		" + HighPriceDaily);
+//			 System.out.println("LowPriceDaily		" + LowPriceDaily);
+//			 System.out.println("ClosePriceDaily	" + ClosePriceDaily);
+//			 System.out.println("VolumeDaily		" + VolumeDaily);
+//			 System.out.println("BBUBDaily			" + BBUBDaily);
+//			 System.out.println("BBLBDaily			" + BBLBDaily);
+//			 System.out.println("BBMBDaily			" + BBMBDaily);
+//			 System.out.println("ema20Daily	" + ema20Daily);
+//			 System.out.println("ema06Daily	" + ema06Daily);
+//			 System.out.println("RSIDaily			" + RSIDaily);
+//			 System.out.println("MACDDaily			" + MACDDaily);
+//			 System.out.println("MacdSignalDaily	" + MacdSignalDaily);
+//			 System.out.println("ADXDaily			" + ADXDaily);
+//			 System.out.println("PDIDaily			" + PDIDaily);
+//			 System.out.println("MDIDaily			" + MDIDaily);
 
 			StockChartDailyData stockChartDailyData = new StockChartDailyData();
 
@@ -322,7 +316,7 @@ public class TopstockresearchChartPage extends PageObject {
 		String metricvalues = " ", scriptname = "";
 		
 		try {
-			Thread.sleep(15000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,7 +325,7 @@ public class TopstockresearchChartPage extends PageObject {
 		ChartLinkinNavBar.click();
 
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -342,7 +336,7 @@ public class TopstockresearchChartPage extends PageObject {
 		mySettingsdropdown.selectByVisibleText("WeeklyChart");
 
 		try {
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -362,7 +356,7 @@ public class TopstockresearchChartPage extends PageObject {
 
 			
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -381,7 +375,7 @@ public class TopstockresearchChartPage extends PageObject {
 			//actionProvider.moveToElement(usernavigation).moveByOffset(540, 0).click().build().perform();
 
 			try {
-				Thread.sleep(15000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -433,8 +427,7 @@ public class TopstockresearchChartPage extends PageObject {
 			String WeeklyorDaily = weeklyMetrics.substring(0, 8);
 			String StockName = weeklyMetrics.substring(8, 20);
 			String WeekDate = weeklyMetrics.substring(26, 36);
-			String OpenPriceWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Open:") + 5,
-					weeklyMetrics.indexOf("High:"));
+			String OpenPriceWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Open:") + 5,weeklyMetrics.indexOf("High:"));
 			String HighPriceWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("High:") + 5,
 					weeklyMetrics.indexOf("Low:"));
 			String LowPriceWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Low:") + 4,
@@ -442,45 +435,42 @@ public class TopstockresearchChartPage extends PageObject {
 			String ClosePriceWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Close:") + 6,
 					weeklyMetrics.indexOf("Volume:"));
 			String VolumeWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Volume:") + 7,
-					weeklyMetrics.indexOf("BBUB:"));
-			String BBUBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBUB:") + 5,
-					weeklyMetrics.indexOf("BBLB:"));
-			String BBLBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBLB:") + 5,	weeklyMetrics.indexOf("BBMB:"));
-			String BBMBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("BBMB:") + 5,	weeklyMetrics.indexOf("ema20:"));
+					weeklyMetrics.indexOf("ema20:"));
 			String ema20Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema20:") + 6,weeklyMetrics.indexOf("ema06:"));
-			String ema06Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema06:") +6,weeklyMetrics.indexOf("ema50:"));
+			String ema06Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema06:") + 6,weeklyMetrics.indexOf("ema50:"));
 			String ema50Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ema50:") + 6,weeklyMetrics.indexOf("EMA200:"));
 			String ema200Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("EMA200:") + 7,weeklyMetrics.indexOf("PSAR:"));
-			String psar2006Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("PSAR:") + 7,weeklyMetrics.indexOf("MACD:"));
-			String MACDWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MACD:") + 5,	weeklyMetrics.indexOf("MacdSignal:"));
+			String psar2006Weekly = weeklyMetrics.substring(weeklyMetrics.indexOf("PSAR:") + 5, weeklyMetrics.indexOf("Bollinger Bands Upper:"));
+			String BBUBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Bollinger Bands Upper:") + 22, weeklyMetrics.indexOf("Middle:"));
+			String BBMBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Middle:") + 7, weeklyMetrics.indexOf("Lower:"));
+			String BBLBWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("Lower:") + 6,weeklyMetrics.indexOf("MACD:"));
+			String MACDWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MACD:") + 5,weeklyMetrics.indexOf("MacdSignal:"));
 			String MacdSignalWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MacdSignal:") + 11,weeklyMetrics.indexOf("RSI:"));
-			String RSIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("RSI:") + 4,
-					weeklyMetrics.indexOf("ADX:"));
-			String ADXWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ADX:") + 4,
-					weeklyMetrics.indexOf("PDI:"));
-			String PDIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("PDI:") + 4,
-					weeklyMetrics.indexOf("MDI:"));
+			String RSIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("RSI:") + 4, weeklyMetrics.indexOf("ADX:"));
+			String ADXWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("ADX:") + 4, weeklyMetrics.indexOf("PDI:"));
+			String PDIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("PDI:") + 4, weeklyMetrics.indexOf("MDI:"));
 			String MDIWeekly = weeklyMetrics.substring(weeklyMetrics.indexOf("MDI:") + 4, weeklyMetrics.length());
+		
 
-			// System.out.println("WeeklyorDaily	" + WeeklyorDaily);
-			// System.out.println("StockName	" + StockName);
-			// System.out.println("TradeDate	" + WeekDate);
-			// System.out.println("OpenPriceWeekly	" + OpenPriceWeekly);
-			// System.out.println("HighPriceWeekly		" + HighPriceWeekly);
-			// System.out.println("LowPriceWeekly		" + LowPriceWeekly);
-			// System.out.println("ClosePriceWeekly	" + ClosePriceWeekly);
-			// System.out.println("VolumeWeekly		" + VolumeWeekly);
-			// System.out.println("BBUBWeekly			" + BBUBWeekly);
-			// System.out.println("BBLBWeekly			" + BBLBWeekly);
-			// System.out.println("BBMBWeekly			" + BBMBWeekly);
-			// System.out.println("ema20Weekly	" + ema20Weekly);
-			// System.out.println("ema06Weekly	" + ema06Weekly);
-			// System.out.println("RSIWeekly			" + RSIWeekly);
-			// System.out.println("MACDWeekly			" + MACDWeekly);
-			// System.out.println("MacdSignalWeekly	" + MacdSignalWeekly);
-			// System.out.println("ADXWeekly			" + ADXWeekly);
-			// System.out.println("PDIWeekly			" + PDIWeekly);
-			// System.out.println("MDIWeekly			" + MDIWeekly);
+//			 System.out.println("WeeklyorDaily	" + WeeklyorDaily);
+//			 System.out.println("StockName	" + StockName);
+//			 System.out.println("TradeDate	" + WeekDate);
+//			 System.out.println("OpenPriceWeekly	" + OpenPriceWeekly);
+//			 System.out.println("HighPriceWeekly		" + HighPriceWeekly);
+//			 System.out.println("LowPriceWeekly		" + LowPriceWeekly);
+//			 System.out.println("ClosePriceWeekly	" + ClosePriceWeekly);
+//			 System.out.println("VolumeWeekly		" + VolumeWeekly);
+//			 System.out.println("BBUBWeekly			" + BBUBWeekly);
+//			 System.out.println("BBLBWeekly			" + BBLBWeekly);
+//			 System.out.println("BBMBWeekly			" + BBMBWeekly);
+//			 System.out.println("ema20Weekly	" + ema20Weekly);
+//			 System.out.println("ema06Weekly	" + ema06Weekly);
+//			 System.out.println("RSIWeekly			" + RSIWeekly);
+//			 System.out.println("MACDWeekly			" + MACDWeekly);
+//			 System.out.println("MacdSignalWeekly	" + MacdSignalWeekly);
+//			 System.out.println("ADXWeekly			" + ADXWeekly);
+//			 System.out.println("PDIWeekly			" + PDIWeekly);
+//			 System.out.println("MDIWeekly			" + MDIWeekly);
 
 			StockChartWeeklyData stockChartWeeklyData = new StockChartWeeklyData();
 

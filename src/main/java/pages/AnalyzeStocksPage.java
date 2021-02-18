@@ -30,7 +30,6 @@ public class AnalyzeStocksPage extends PageObject {
 	public void AnalyzeData() throws ParseException {
 		
 
-
 		for (int i = 0; i < lstDailyData.size(); i++) {
 			DailyDataAnalysis dailyDataAnalysis = new DailyDataAnalysis();
 
