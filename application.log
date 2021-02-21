@@ -1,4 +1,4 @@
-2021-02-17 19:22:32,941  INFO [main] ConsoleLoggingListener:220 - [36m
+2021-02-19 10:39:34,720  INFO [main] ConsoleLoggingListener:220 - [36m
 
 -------------------------------------------------------------------------------------
      _______. _______ .______       _______ .__   __.  __  .___________.____    ____ 
@@ -15,8 +15,8 @@
  Learn Serenity BDD online at http://serenity-dojo.com                               
 -------------------------------------------------------------------------------------
 [0m
-2021-02-17 19:22:32,953  INFO [main] ConsoleLoggingListener:249 - Test Suite Started: get User selected values
-2021-02-17 19:22:33,097  INFO [main] ConsoleLoggingListener:266 - 
+2021-02-19 10:39:34,732  INFO [main] ConsoleLoggingListener:249 - Test Suite Started: get User selected values
+2021-02-19 10:39:34,880  INFO [main] ConsoleLoggingListener:266 - 
  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
 |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
@@ -26,7 +26,7 @@
 
 TEST STARTED: get values from daily chart
 -------------------------------------------------------------------(get-user-selected-values;get-values-from-daily-chart)
-2021-02-17 20:43:55,149  INFO [main] ConsoleLoggingListener:393 - 
+2021-02-19 10:54:18,261  INFO [main] ConsoleLoggingListener:393 - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
  (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
@@ -36,7 +36,7 @@ TEST STARTED: get values from daily chart
 
 TEST PASSED: get values from daily chart
 ----------------------------------------------------------------------------
-2021-02-17 20:43:55,151  INFO [main] ConsoleLoggingListener:393 - 
+2021-02-19 10:54:18,263  INFO [main] ConsoleLoggingListener:393 - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
  (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |

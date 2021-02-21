@@ -61,7 +61,7 @@ public class TopStockResearchChartSteps {
 	}
 
 
-	public void getValuesFromWeeklyChart() {
+	public void getValuesFromWeeklyChart() throws InterruptedException {
 		// TODO Auto-generated method stub
 		topstockresearchChartPage.getweeklychartvalues();
 	}

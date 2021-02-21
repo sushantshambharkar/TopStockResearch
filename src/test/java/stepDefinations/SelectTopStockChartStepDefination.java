@@ -37,7 +37,7 @@ public class SelectTopStockChartStepDefination {
 	}
 	
 	@When("^User open the weekly chart$")
-	public void user_open_the_weekly_chart() {
+	public void user_open_the_weekly_chart() throws InterruptedException {
 		
 		topStockResearchChartStep.getValuesFromWeeklyChart();
 		
